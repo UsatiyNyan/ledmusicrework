@@ -23,7 +23,7 @@ int main() {
         std::cout << std::endl;
     }
 
-    pa::Capture capture(device_list.get_sources().at(0).name);
+    pa::Capture capture(device_list.get_sources().at(0).name, 44100, 2);
     std::vector<float> float_vector(1024);
     while (true) {
         capture.get_sample(float_vector, 1024);

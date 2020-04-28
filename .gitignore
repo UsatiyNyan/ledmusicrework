@@ -1,5 +1,6 @@
 .idea
 cmake-build-debug
+bass24-linux.zip
 
 # Prerequisites
 *.d
@@ -16,6 +17,7 @@ cmake-build-debug
 
 # Compiled Dynamic libraries
 *.so
+!lib/bass_adapter/include/libbass.so
 *.dylib
 *.dll
 

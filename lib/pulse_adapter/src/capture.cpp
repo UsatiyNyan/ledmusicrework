@@ -13,17 +13,17 @@
 using exception::Exception;
 
 namespace pa {
-Capture::Capture(const std::string& device) {
+Capture::Capture(const std::string& device, uint32_t freq, uint8_t chans) {
     if (BYTE_ORDER == LITTLE_ENDIAN) {
         _sample_spec = {
             .format = PA_SAMPLE_FLOAT32LE,
-            .rate = 44100,
-            .channels = 2};
+            .rate = freq,
+            .channels = chans};
     } else {
         _sample_spec = {
             .format = PA_SAMPLE_FLOAT32BE,
-            .rate = 44100,
-            .channels = 2};
+            .rate = freq,
+            .channels = chans};
     }
 
     int error = 0;
@@ -39,12 +39,10 @@ Capture::~Capture() {
     pa_simple_free(_simple);
 }
 
-void Capture::get_sample(std::vector<float> &buf, size_t sample_size) {
-    if (buf.max_size() < sample_size) {
-        throw Exception("vector is of smaller size than sample_size");
-    }
+void Capture::get_sample(std::vector<float> &buf) {
+    // TODO: separate thread is working on reading data from source and the other is getting this data
     int error = 0;
-    if (pa_simple_read(_simple, buf.data(), sample_size * sizeof(float), &error) < 0) {
+    if (pa_simple_read(_simple, buf.data(), buf.size() * sizeof(float), &error) < 0) {
         throw Exception("pa_simple_read: " + std::string(pa_strerror(error)));
     }
 }

@@ -2,8 +2,8 @@
 // Created by kira on 28.04.2020.
 //
 
-#ifndef LIB_BASE_EXCEPTION_INCLUDE_BASE_EXCEPTION_H_
-#define LIB_BASE_EXCEPTION_INCLUDE_BASE_EXCEPTION_H_
+#ifndef LED_PLAYER_LIB_BASE_EXCEPTION_INCLUDE_BASE_EXCEPTION_H_
+#define LED_PLAYER_LIB_BASE_EXCEPTION_INCLUDE_BASE_EXCEPTION_H_
 
 #include <exception>
 #include <string>
@@ -21,4 +21,4 @@ class Exception : public std::exception {
 };
 }  // namespace process
 
-#endif //LIB_BASE_EXCEPTION_INCLUDE_BASE_EXCEPTION_H_
+#endif //LED_PLAYER_LIB_BASE_EXCEPTION_INCLUDE_BASE_EXCEPTION_H_

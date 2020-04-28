@@ -3,3 +3,6 @@ target_link_libraries(pulse_list pulse_adapter)
 
 add_executable(get_device_and_capture src/get_device_and_capture.cpp)
 target_link_libraries(get_device_and_capture pulse_adapter)
+
+add_executable(get_sample_data src/get_sample_data.cpp)
+target_link_libraries(get_sample_data bass_adapter pulse_adapter)

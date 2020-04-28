@@ -1,5 +1,6 @@
 add_subdirectory(base_exception)
-add_subdirectory(pulse_capture)
+add_subdirectory(pulse_adapter)
 add_subdirectory(sample)
+add_subdirectory(bass_adapter)
 
-set(LIBS pulse_capture pulse_device base_exception PARENT_SCOPE)
+set(LIBS pulse_adapter base_exception bass_adapter PARENT_SCOPE)
