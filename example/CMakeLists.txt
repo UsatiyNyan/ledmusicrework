@@ -1,0 +1,2 @@
+add_executable(pulse_list src/pulse_list_devices.cpp)
+target_link_libraries(pulse_list pulse_device)
