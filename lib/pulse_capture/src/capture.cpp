@@ -2,45 +2,50 @@
 // Created by kira on 10.11.2019.
 //
 
+#include "capture.h"
+#include "base_exception.h"
+
 #include <pulse/simple.h>
 #include <pulse/error.h>
-#include <cstdint>
-#include <iostream>
-
-#include "capture.h"
+#include <endian.h>
 
 
-pa::Capture::Capture() : isSet(false),
-                         ss({.format = PA_SAMPLE_FLOAT32,
-                                .rate = 44100,
-                                .channels = 2}),
-                         simple(NULL) {}
+using exception::Exception;
 
-int32_t pa::Capture::set_device(std::string device) {
-    int32_t error = 0;
-    simple = pa_simple_new(NULL, "player_usage", PA_STREAM_RECORD,
-                           device.c_str(), "record", &ss, NULL, NULL, &error);
-    if (!error) {
-        isSet = true;
+namespace pa {
+Capture::Capture(const std::string& device) {
+    if (BYTE_ORDER == LITTLE_ENDIAN) {
+        _sample_spec = {
+            .format = PA_SAMPLE_FLOAT32LE,
+            .rate = 44100,
+            .channels = 2};
+    } else {
+        _sample_spec = {
+            .format = PA_SAMPLE_FLOAT32BE,
+            .rate = 44100,
+            .channels = 2};
     }
 
-    return error;
-}
-
-pa::Capture::~Capture() {
-    if (simple) {
-        pa_simple_free(simple);
+    int error = 0;
+    _simple = pa_simple_new(nullptr, "player_usage", PA_STREAM_RECORD,
+                           device.c_str(), "record", &_sample_spec,
+                           nullptr, nullptr, &error);
+    if (error) {
+        throw Exception("pa_simple_new: " + std::string(pa_strerror(error)));
     }
 }
 
-uint32_t pa::Capture::get_sample(void *buf, size_t sample_size) {
-    int32_t error = 0;
-    uint32_t pa_read =
-        pa_simple_read(simple, buf, sample_size * sizeof(float), &error);
-
-    if (pa_read < 0) {
-        std::cout << pa_strerror(error) << std::endl;
-    }
-
-    return pa_read;
+Capture::~Capture() {
+    pa_simple_free(_simple);
 }
+
+void Capture::get_sample(std::vector<float> &buf, size_t sample_size) {
+    if (buf.max_size() < sample_size) {
+        throw Exception("vector is of smaller size than sample_size");
+    }
+    int error = 0;
+    if (pa_simple_read(_simple, buf.data(), sample_size * sizeof(float), &error) < 0) {
+        throw Exception("pa_simple_read: " + std::string(pa_strerror(error)));
+    }
+}
+}  // namespace pa

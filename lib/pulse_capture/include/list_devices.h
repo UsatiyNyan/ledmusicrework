@@ -30,8 +30,7 @@ class DeviceList {
     pa_operation *_operation = nullptr;
     bool _ready = false;
 };
-
-}
+}  // namespace pa
 
 #endif
 

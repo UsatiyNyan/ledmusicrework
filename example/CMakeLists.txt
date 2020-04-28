@@ -1,2 +1,5 @@
 add_executable(pulse_list src/pulse_list_devices.cpp)
-target_link_libraries(pulse_list pulse_device)
+target_link_libraries(pulse_list pulse_adapter)
+
+add_executable(get_device_and_capture src/get_device_and_capture.cpp)
+target_link_libraries(get_device_and_capture pulse_adapter)

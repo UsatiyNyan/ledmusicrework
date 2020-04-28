@@ -6,23 +6,21 @@
 #define PLAYER_CAPTURE_H
 
 #include <pulse/simple.h>
-#include <pulse/error.h>
-#include <cstdint>
 #include <string>
+#include <vector>
 
 
 namespace pa {
 class Capture {
  public:
-    Capture();
+    explicit Capture(const std::string& device);
     ~Capture();
-    int32_t set_device(std::string device);
-    uint32_t get_sample(void *buf, size_t sample_size);
+    void get_sample(std::vector<float> &buf, size_t sample_size);
 
-    bool isSet;
  private:
-    pa_sample_spec ss;
-    pa_simple *simple;
+    pa_sample_spec _sample_spec{};
+    pa_simple *_simple = nullptr;
 };
-}
+} // namespace pa
+
 #endif //PLAYER_CAPTURE_H

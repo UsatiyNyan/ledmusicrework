@@ -1,5 +1,6 @@
 #include "base_exception.h"
 #include "list_devices.h"
+
 #include <algorithm>
 #include <cstring>
 
@@ -71,14 +72,14 @@ DeviceList::DeviceList()
   _mainloop_api(pa_mainloop_get_api(_mainloop)),
   _context(pa_context_new(_mainloop_api, "device_list")) {
     // This function connects to the pulse server
-    if (pa_context_connect(_context, NULL, PA_CONTEXT_NOFLAGS, NULL) < 0) {
+    if (pa_context_connect(_context, nullptr, PA_CONTEXT_NOFLAGS, nullptr) < 0) {
         throw Exception("context_connect error");
     }
     pa_context_set_state_callback(_context, _state_cb, &_ready);
 
     // We can't do anything until PA is ready, so just iterate the mainloop
     while (!_ready) {
-        if (pa_mainloop_iterate(_mainloop, 1, NULL) < 0) {
+        if (pa_mainloop_iterate(_mainloop, true, nullptr) < 0) {
             throw Exception("mainloop_iterate error");
         }
     }
@@ -94,7 +95,7 @@ DeviceVector &&DeviceList::get_sinks() {
     ReadyAndDeviceVector ready_and_device_vector;
     _operation = pa_context_get_sink_info_list(_context, _sinklist_cb, &ready_and_device_vector);
     while (!ready_and_device_vector.first) {
-        if (pa_mainloop_iterate(_mainloop, 1, NULL) < 0) {
+        if (pa_mainloop_iterate(_mainloop, true, nullptr) < 0) {
             throw Exception("mainloop_iterate error");
         }
     }
@@ -105,7 +106,7 @@ DeviceVector &&DeviceList::get_sources() {
     ReadyAndDeviceVector ready_and_device_vector;
     _operation = pa_context_get_source_info_list(_context, _sourcelist_cb, &ready_and_device_vector);
     while (!ready_and_device_vector.first) {
-        if (pa_mainloop_iterate(_mainloop, 1, NULL) < 0) {
+        if (pa_mainloop_iterate(_mainloop, true, nullptr) < 0) {
             throw Exception("mainloop_iterate error");
         }
     }
