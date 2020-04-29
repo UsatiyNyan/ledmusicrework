@@ -8,7 +8,7 @@
 
 int main() {
     pa::DeviceList device_list;
-    bass::Adapter adapter(device_list.get_sources().at(0).name, 44100, 2);
+    bass::FFT adapter(device_list.get_sources().at(0).name, 44100, 2);
     std::vector<float> float_vector(1024);
     while (true) {
         adapter.dispatch_audio_sample(float_vector);

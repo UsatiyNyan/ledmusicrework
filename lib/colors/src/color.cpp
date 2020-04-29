@@ -5,7 +5,6 @@
 #include "color.h"
 
 #include <algorithm>
-#include <iostream>
 
 
 namespace clr {
@@ -15,7 +14,7 @@ void Color::set_params(const RGBParameters &parameters) {
     _prm = parameters;
 }
 
-RGB Color::compute_rgb(const std::vector<float> &fft_data) {
+RGB Color::compute_rgb(const std::vector<float> &fft_data) const {
     float r = 0;
     float g = 0;
     float b = 0;
@@ -57,10 +56,6 @@ RGB Color::compute_rgb(const std::vector<float> &fft_data) {
     r = r * _prm.sensitivity * _prm.red_imp / static_cast<float>(fft_data.size() * 2) ;
     g = g * _prm.sensitivity * _prm.green_imp / static_cast<float>(fft_data.size() * 2) ;
     b = b * _prm.sensitivity * _prm.blue_imp / static_cast<float>(fft_data.size() * 2) ;
-
-    std::cout << static_cast<int>(r) << " | "
-              << static_cast<int>(g) << " | "
-              << static_cast<int>(b) << std::endl;
 
     return {
         .r = static_cast<uint8_t>(static_cast<int>(r) % 256),

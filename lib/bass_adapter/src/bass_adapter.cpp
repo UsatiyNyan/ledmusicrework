@@ -4,7 +4,7 @@
 
 
 namespace bass {
-static uint32_t to_bass_data_fft(size_t sample_size) {
+uint32_t to_bass_data_fft(size_t sample_size) {
     switch (sample_size) {
         case 128: return BASS_DATA_FFT256;
         case 256: return BASS_DATA_FFT512;
@@ -18,7 +18,7 @@ static uint32_t to_bass_data_fft(size_t sample_size) {
     }
 }
 
-Adapter::Adapter(const std::string& device, uint32_t freq, uint8_t chans)
+FFT::FFT(const std::string& device, uint32_t freq, uint8_t chans)
 : _capture_device(device, freq, chans),
   _capture_buf(2048, 0) {
     if (!BASS_Init(0, freq, BASS_DEVICE_LOOPBACK, nullptr, nullptr)) {
@@ -30,11 +30,11 @@ Adapter::Adapter(const std::string& device, uint32_t freq, uint8_t chans)
     }
 }
 
-Adapter::~Adapter() {
+FFT::~FFT() {
     BASS_Free();
 }
 
-void Adapter::dispatch_audio_sample(std::vector<float> &buf) {
+void FFT::dispatch_audio_sample(std::vector<float> &buf) {
     if (_capture_buf.size() != buf.size()) {
         to_bass_data_fft(buf.size());  // try to get the BASS_DATA_FFT...
         std::vector<float>(buf.size(), 0).swap(_capture_buf);

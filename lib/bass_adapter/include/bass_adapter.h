@@ -9,21 +9,24 @@
 #include <vector>
 
 namespace bass {
-class Adapter {
+class IFFT{
  public:
-    Adapter(const std::string& device, uint32_t freq, uint8_t chans);
-    ~Adapter();
+    virtual void dispatch_audio_sample(std::vector<float> &buf) = 0;
+};
 
-    void dispatch_audio_sample(std::vector<float> &buf);
+class FFT : public IFFT {
+ public:
+    FFT(const std::string& device, uint32_t freq, uint8_t chans);
+    ~FFT();
 
-    Adapter() = delete;
-    Adapter(const Adapter &) = delete;
-    Adapter &operator=(const Adapter &) = delete;
+    void dispatch_audio_sample(std::vector<float> &buf) override;
  private:
     HSTREAM _hstream;
     pa::Capture _capture_device;
     std::vector<float> _capture_buf;
 };
+
+uint32_t to_bass_data_fft(size_t sample_size);
 }  // namespace bass
 
 #endif

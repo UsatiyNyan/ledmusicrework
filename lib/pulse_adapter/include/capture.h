@@ -11,11 +11,15 @@
 
 
 namespace pa {
-class Capture {
+class ICapture {
+ public:
+    virtual void get_sample(std::vector<float> &buf) = 0;
+};
+class Capture : public ICapture {
  public:
     explicit Capture(const std::string& device, uint32_t freq, uint8_t chans);
     ~Capture();
-    void get_sample(std::vector<float> &buf);
+    void get_sample(std::vector<float> &buf) override;
 
  private:
     pa_sample_spec _sample_spec{};

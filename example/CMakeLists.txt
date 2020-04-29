@@ -8,4 +8,4 @@ add_executable(get_sample_data src/get_sample_data.cpp)
 target_link_libraries(get_sample_data bass_adapter pulse_adapter)
 
 add_executable(color_decoding_usage src/color_decoding_usage.cpp)
-target_link_libraries(color_decoding_usage colors bass_adapter pulse_adapter)
+target_link_libraries(color_decoding_usage colors bass_adapter pulse_adapter Threads::Threads)

@@ -13,7 +13,7 @@ class Color {
  public:
     explicit Color(const RGBParameters &parameters);
     void set_params(const RGBParameters &parameters);
-    [[nodiscard]] RGB compute_rgb(const std::vector<float> &fft_data);
+    [[nodiscard]] RGB compute_rgb(const std::vector<float> &fft_data) const;
  private:
     RGBParameters _prm;
 };
