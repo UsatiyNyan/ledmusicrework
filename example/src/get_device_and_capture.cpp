@@ -26,7 +26,7 @@ int main() {
     pa::Capture capture(device_list.get_sources().at(0).name, 44100, 2);
     std::vector<float> float_vector(1024);
     while (true) {
-        capture.get_sample(float_vector, 1024);
+        capture.get_sample(float_vector);
         std::cout << std::accumulate(float_vector.cbegin(), float_vector.cend(), 0.) << std::endl;
     }
 

@@ -20,6 +20,5 @@ int main(int argc, char *argv[]) {
         std::cout << "Description: " << device.description << std::endl;
         std::cout << std::endl;
     }
-
     return 0;
 }
