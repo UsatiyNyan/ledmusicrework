@@ -40,7 +40,6 @@ Capture::~Capture() {
 }
 
 void Capture::get_sample(std::vector<float> &buf) {
-    // TODO: separate thread is working on reading data from source and the other is getting this data
     int error = 0;
     if (pa_simple_read(_simple, buf.data(), buf.size() * sizeof(float), &error) < 0) {
         throw Exception("pa_simple_read: " + std::string(pa_strerror(error)));

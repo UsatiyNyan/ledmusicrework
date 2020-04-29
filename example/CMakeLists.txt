@@ -9,3 +9,6 @@ target_link_libraries(get_sample_data bass_adapter pulse_adapter)
 
 add_executable(color_decoding_usage src/color_decoding_usage.cpp)
 target_link_libraries(color_decoding_usage colors bass_adapter pulse_adapter)
+
+add_executable(audio_loop_usage src/audio_loop_usage.cpp)
+target_link_libraries(audio_loop_usage audio_tf_loop)
