@@ -22,7 +22,7 @@ static void _state_cb(pa_context *ctx, void *userdata) {
 }
 
 static void _sinklist_cb(pa_context *, const pa_sink_info *sink_info,
-                           int eol, void *userdata) {
+                         int eol, void *userdata) {
     auto ready_and_device_vector = static_cast<ReadyAndDeviceVector *>(userdata);
     bool &ready = ready_and_device_vector->first;
     DeviceVector &device_vector = ready_and_device_vector->second;
@@ -32,7 +32,7 @@ static void _sinklist_cb(pa_context *, const pa_sink_info *sink_info,
         return;
     }
 
-    Device tmp {};
+    Device tmp{};
     tmp.index = sink_info->index;
     strncpy(tmp.name, sink_info->name, 255);
     strncpy(tmp.description, sink_info->description, 255);
@@ -45,7 +45,7 @@ static void _sinklist_cb(pa_context *, const pa_sink_info *sink_info,
 }
 
 static void _sourcelist_cb(pa_context *, const pa_source_info *source_info,
-                             int eol, void *userdata) {
+                           int eol, void *userdata) {
     auto ready_and_device_vector = static_cast<ReadyAndDeviceVector *>(userdata);
     bool &ready = ready_and_device_vector->first;
     DeviceVector &device_vector = ready_and_device_vector->second;
@@ -55,7 +55,7 @@ static void _sourcelist_cb(pa_context *, const pa_source_info *source_info,
         return;
     }
 
-    Device tmp {};
+    Device tmp{};
     tmp.index = source_info->index;
     strncpy(tmp.name, source_info->name, 255);
     strncpy(tmp.description, source_info->description, 255);
@@ -68,9 +68,9 @@ static void _sourcelist_cb(pa_context *, const pa_source_info *source_info,
 }
 
 DeviceList::DeviceList()
-: _mainloop(pa_mainloop_new()),
-  _mainloop_api(pa_mainloop_get_api(_mainloop)),
-  _context(pa_context_new(_mainloop_api, "device_list")) {
+    : _mainloop(pa_mainloop_new()),
+      _mainloop_api(pa_mainloop_get_api(_mainloop)),
+      _context(pa_context_new(_mainloop_api, "device_list")) {
     // This function connects to the pulse server
     if (pa_context_connect(_context, nullptr, PA_CONTEXT_NOFLAGS, nullptr) < 0) {
         throw Exception("context_connect error");
@@ -113,7 +113,7 @@ DeviceVector &&DeviceList::get_sources() {
     return std::move(ready_and_device_vector.second);
 }
 
-bool operator==(const Device& device1, const Device& device2) {
+bool operator==(const Device &device1, const Device &device2) {
     return device1.index == device2.index;
 }
 }  // namespace pa

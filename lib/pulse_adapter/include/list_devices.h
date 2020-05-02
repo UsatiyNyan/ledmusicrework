@@ -4,14 +4,13 @@
 #include <pulse/pulseaudio.h>
 #include <vector>
 
-
 namespace pa {
 struct Device {
     size_t index;
     char name[256];
     char description[256];
 };
-bool operator==(const Device& device1, const Device& device2);
+bool operator==(const Device &device1, const Device &device2);
 
 using DeviceVector = std::vector<Device>;
 using ReadyAndDeviceVector = std::pair<bool, DeviceVector>;

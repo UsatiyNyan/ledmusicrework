@@ -5,7 +5,6 @@
 #include <cstring>
 #include "base_exception.h"
 
-
 namespace exception {
 Exception::Exception(std::string es) : _errstr(std::move(es)) {
     _errstr += "\n";

@@ -9,11 +9,10 @@
 #include <string>
 #include <vector>
 
-
 namespace pa {
 class Capture {
  public:
-    explicit Capture(const std::string& device, uint32_t freq, uint8_t chans);
+    explicit Capture(const std::string &device, uint32_t freq, uint8_t chans);
     ~Capture();
     void get_sample(std::vector<float> &buf);
 

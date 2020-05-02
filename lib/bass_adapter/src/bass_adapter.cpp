@@ -2,7 +2,6 @@
 
 #include "bass_exception.h"
 
-
 namespace bass {
 static uint32_t to_bass_data_fft(size_t sample_size) {
     switch (sample_size) {
@@ -18,13 +17,14 @@ static uint32_t to_bass_data_fft(size_t sample_size) {
     }
 }
 
-Adapter::Adapter(const std::string& device, uint32_t freq, uint8_t chans)
-: _capture_device(device, freq, chans),
-  _capture_buf(2048, 0) {
+Adapter::Adapter(const std::string &device, uint32_t freq, uint8_t chans)
+    : _capture_device(device, freq, chans),
+      _capture_buf(2048, 0) {
     if (!BASS_Init(0, freq, BASS_DEVICE_LOOPBACK, nullptr, nullptr)) {
         throw BassException("BASS_Init");
     }
-    _hstream = BASS_StreamCreate(freq, chans, BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT, STREAMPROC_PUSH, nullptr);
+    _hstream =
+        BASS_StreamCreate(freq, chans, BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT, STREAMPROC_PUSH, nullptr);
     if (!_hstream) {
         throw BassException("BASS_StreamCreate");
     }

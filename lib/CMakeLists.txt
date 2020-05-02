@@ -5,7 +5,19 @@ add_subdirectory(pulse_adapter)
 add_subdirectory(sample)
 add_subdirectory(bass_adapter)
 add_subdirectory(colors)
+add_subdirectory(job_thread)
 add_subdirectory(audio_tf_loop)
+add_subdirectory(file_descriptor)
 add_subdirectory(serial)
 
-set(LIBS pulse_adapter base_exception bass_adapter colors audio_tf_loop serial PARENT_SCOPE)
+set(LIBS
+        base_exception
+        pulse_adapter
+        sample
+        bass_adapter
+        colors
+        job_thread
+        audio_tf_loop
+        file_descriptor
+        serial
+        PARENT_SCOPE)

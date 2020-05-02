@@ -8,7 +8,6 @@
 #include <exception>
 #include <string>
 
-
 namespace exception {
 class Exception : public std::exception {
  public:

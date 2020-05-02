@@ -11,23 +11,23 @@
 #include <QString>
 #include "player.h"
 
-
 class SerialThread : public QThread {
-Q_OBJECT
-public:
+    Q_OBJECT
+ public:
     explicit SerialThread(Player *player);
     ~SerialThread() override;
     void run() override;
 
-public slots:
-    void start_port(const QSerialPortInfo &);
+ public
+    slots:
+        void
+    start_port(const QSerialPortInfo &);
 
-public:
+ public:
     Player *player;
     QSerialPort *serial_port;
     QSerialPortInfo *serial_port_info;
     bool isConnected;
 };
-
 
 #endif //PLAYER_QTHREAD_H
