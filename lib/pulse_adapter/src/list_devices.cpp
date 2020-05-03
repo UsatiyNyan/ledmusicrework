@@ -91,7 +91,7 @@ DeviceList::~DeviceList() {
     pa_mainloop_free(_mainloop);
 }
 
-DeviceVector &&DeviceList::get_sinks() {
+DeviceVector DeviceList::get_sinks() {
     ReadyAndDeviceVector ready_and_device_vector;
     _operation = pa_context_get_sink_info_list(_context, _sinklist_cb, &ready_and_device_vector);
     while (!ready_and_device_vector.first) {
@@ -99,10 +99,10 @@ DeviceVector &&DeviceList::get_sinks() {
             throw Exception("mainloop_iterate error");
         }
     }
-    return std::move(ready_and_device_vector.second);
+    return ready_and_device_vector.second;
 }
 
-DeviceVector &&DeviceList::get_sources() {
+DeviceVector DeviceList::get_sources() {
     ReadyAndDeviceVector ready_and_device_vector;
     _operation = pa_context_get_source_info_list(_context, _sourcelist_cb, &ready_and_device_vector);
     while (!ready_and_device_vector.first) {
@@ -110,7 +110,7 @@ DeviceVector &&DeviceList::get_sources() {
             throw Exception("mainloop_iterate error");
         }
     }
-    return std::move(ready_and_device_vector.second);
+    return ready_and_device_vector.second;
 }
 
 bool operator==(const Device &device1, const Device &device2) {

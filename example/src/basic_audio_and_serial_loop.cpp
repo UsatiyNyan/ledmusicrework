@@ -18,14 +18,14 @@ int main() {
     clr::RGBParameters parameters{
         128,
         0,
-        512,
         1024,
+        512,
         1,
         1,
         1,
         0,
         1,
-        false
+        true
     };
     loop::AudioTfLoop audio_tf_loop(container,
                                     pa::DeviceList().get_sources()[0],
@@ -40,9 +40,17 @@ int main() {
 
     std::atomic<bool> run = true;
     std::thread timer([&run]() {
-      std::this_thread::sleep_for(24s);
+      std::this_thread::sleep_for(24h);
       run = false;
     });
+
+//    std::vector<geometry::Point> polygon({{1, 1}, {-1, 1}, {-1, -1}, {1, -1}});
+//    serial_loop.set_polygon(polygon);
+//    serial_loop.set_bpm(160);
+    serial_loop.set_circle({0,0});
+//    serial_loop.set_basic();
+//    serial_loop.set_length_and_width(8, 8);
+
     timer.join();
 
     return 0;

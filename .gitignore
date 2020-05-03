@@ -2,6 +2,7 @@
 cmake-build-debug
 bass24-linux.zip
 bass_lib/
+*.user
 
 # Prerequisites
 *.d

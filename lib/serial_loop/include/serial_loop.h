@@ -24,6 +24,7 @@ enum FLAGS : uint8_t {
 class SerialLoop : public executor::JobThread {
  public:
     explicit SerialLoop(clr::RGB &rgb, const std::string &serial_port);
+    void parse_rgb();
     void set_basic();
     void set_circle(geometry::Point center);
     void set_polygon(const std::vector<geometry::Point>& vertices);

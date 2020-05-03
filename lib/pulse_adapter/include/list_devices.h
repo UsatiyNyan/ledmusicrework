@@ -19,8 +19,8 @@ class DeviceList {
  public:
     DeviceList();
     ~DeviceList();
-    DeviceVector &&get_sinks();
-    DeviceVector &&get_sources();
+    DeviceVector get_sinks();
+    DeviceVector get_sources();
 
  private:
     pa_mainloop *_mainloop;

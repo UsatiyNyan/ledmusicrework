@@ -25,9 +25,9 @@ int main() {
     while (true) {
         adapter.dispatch_audio_sample(float_vector);
         clr::RGB rgb = color.compute_rgb(float_vector);
-        std::cout << static_cast<int>(rgb.r) << " | "
-                  << static_cast<int>(rgb.g) << " | "
-                  << static_cast<int>(rgb.b) << std::endl;
+        std::cout << rgb.r << " | "
+                  << rgb.g << " | "
+                  << rgb.b << std::endl;
     }
     return 0;
 }

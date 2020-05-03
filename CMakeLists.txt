@@ -3,5 +3,6 @@ project(led_player)
 set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory(lib)
-add_subdirectory(project)
+add_subdirectory(front)
 add_subdirectory(example)
+add_subdirectory(project)

@@ -33,6 +33,7 @@ Connection::Connection(const std::string &serialport, int baud) {
     termios tty{};
     //file_descriptor = open(serialport, O_RDWR | O_NOCTTY | O_NDELAY);
     _fd = fd::FileDescriptor(open(serialport.c_str(), O_RDWR | O_NONBLOCK));
+//    _fd = fd::FileDescriptor(open(serialport.c_str(), O_RDWR));
     if (_fd.fd() == -1) {
         throw Exception("serialport_init: Unable to open port ");
     }
@@ -68,7 +69,6 @@ Connection::Connection(const std::string &serialport, int baud) {
     // see: http://unixwiz.net/techtips/termios-vmin-vtime.html
     tty.c_cc[VMIN] = 0;
     tty.c_cc[VTIME] = 0;
-    //toptions.c_cc[VTIME] = 20;
 
     tcsetattr(_fd.fd(), TCSANOW, &tty);
     if (tcsetattr(_fd.fd(), TCSAFLUSH, &tty) < 0) {

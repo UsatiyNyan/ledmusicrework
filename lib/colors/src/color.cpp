@@ -56,10 +56,14 @@ RGB Color::compute_rgb(const std::vector<float> &fft_data) {
     g = g * _prm.sensitivity * _prm.green_imp / static_cast<float>(fft_data.size() * 2);
     b = b * _prm.sensitivity * _prm.blue_imp / static_cast<float>(fft_data.size() * 2);
 
+    r = r > 255 ? 255 : r;
+    g = g > 255 ? 255 : g;
+    b = b > 255 ? 255 : b;
+
     return {
-        .r = static_cast<uint8_t>(static_cast<int>(r) % 256),
-        .g = static_cast<uint8_t>(static_cast<int>(g) % 256),
-        .b = static_cast<uint8_t>(static_cast<int>(b) % 256)
+        .r = static_cast<unsigned>(r),
+        .g = static_cast<unsigned>(g),
+        .b = static_cast<unsigned>(b)
     };
 }
 }  // namespace colors

@@ -24,3 +24,6 @@ target_link_libraries(basic_audio_and_serial_loop ${LIBS})
 
 add_executable(serial_hello_world src/serial_hello_world.cpp)
 target_link_libraries(serial_hello_world ${LIBS})
+
+add_executable(devices_front_usage src/devices_front_usage.cpp)
+target_link_libraries(devices_front_usage devices)

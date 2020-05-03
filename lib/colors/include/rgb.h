@@ -5,13 +5,12 @@
 #ifndef LED_PLAYER_LIB_COLORS_INCLUDE_RGB_H_
 #define LED_PLAYER_LIB_COLORS_INCLUDE_RGB_H_
 
-#include <cstdint>
 
 namespace clr {
 struct RGB {
-    uint8_t r;
-    uint8_t g;
-    uint8_t b;
+    unsigned r;
+    unsigned g;
+    unsigned b;
 };
 struct RGBParameters {
     int half_width;

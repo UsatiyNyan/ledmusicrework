@@ -4,8 +4,6 @@
 
 #include "audio_tf_loop.h"
 
-//#include <iostream>
-
 namespace loop {
 AudioTfLoop::AudioTfLoop(LockFreeContainer &container,
                          const pa::Device &device, const clr::RGBParameters &prms, size_t buf_size)
@@ -15,7 +13,6 @@ AudioTfLoop::AudioTfLoop(LockFreeContainer &container,
       _buf_size(buf_size) {
 }
 void AudioTfLoop::job() {
-//        ++_ctr;
     _adapter.dispatch_audio_sample(_container._tmp_fft);
     _container._tmp_rgb = _color.compute_rgb(_container._tmp_fft);
     {
