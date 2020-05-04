@@ -13,16 +13,17 @@ struct RGB {
     unsigned b;
 };
 struct RGBParameters {
-    int half_width;
-    int red_peak;
-    int green_peak;
-    int blue_peak;
-    float red_imp;
-    float green_imp;
-    float blue_imp;
-    float filter;
-    float sensitivity;
-    bool tweak_by_min;
+    int half_width = 128;
+    int red_peak = 0;
+    int green_peak = 1024;
+    int blue_peak = 512;
+    int bpm = 100;
+    float red_imp = 1;
+    float green_imp = 1;
+    float blue_imp = 1;
+    float filter = 0;
+    float sensitivity = 1;
+    bool tweak_by_min = true;
 };
 }  // namespace colors
 

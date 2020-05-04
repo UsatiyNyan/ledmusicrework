@@ -2,8 +2,8 @@
 // Created by kira on 27.11.2019.
 //
 
-#ifndef PLAYER_LIB_PLAYER_POLYGON_H_
-#define PLAYER_LIB_PLAYER_POLYGON_H_
+#ifndef LED_PLAYER_LIB_GEOMETRY_INCLUDE_POLYGON_H_
+#define LED_PLAYER_LIB_GEOMETRY_INCLUDE_POLYGON_H_
 
 #include "point.h"
 #include <vector>
@@ -17,8 +17,7 @@ class Polygon {
     [[nodiscard]] const std::vector<Point> &get_vertices() const;
  private:
     std::vector<Point> _vertices;
-    float _cos = 0;
-    bool _ind_cos = false;
+    std::vector<Point> _expander;
 };
 class Polygons {
  public:
@@ -31,4 +30,4 @@ class Polygons {
 };
 }  // namespace geometry
 
-#endif //PLAYER_LIB_PLAYER_POLYGON_H_
+#endif //LED_PLAYER_LIB_GEOMETRY_INCLUDE_POLYGON_H_

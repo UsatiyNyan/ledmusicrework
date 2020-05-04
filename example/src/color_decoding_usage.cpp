@@ -1,7 +1,7 @@
 //
 // Created by kira on 29.04.2020.
 //
-#include "color.h"
+#include "color_settings.h"
 #include "list_devices.h"
 #include "bass_adapter.h"
 #include <iostream>

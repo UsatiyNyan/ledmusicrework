@@ -6,10 +6,9 @@
 
 namespace loop {
 AudioTfLoop::AudioTfLoop(LockFreeContainer &container,
-                         const pa::Device &device, const clr::RGBParameters &prms, size_t buf_size)
+                         const pa::Device &device, size_t buf_size)
     : _container(container),
       _adapter(device.name, 44100, 2),
-      _color(prms),
       _buf_size(buf_size) {
 }
 void AudioTfLoop::job() {

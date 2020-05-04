@@ -2,13 +2,11 @@
 // Created by kira on 29.04.2020.
 //
 
-#include "color.h"
+#include "color_settings.h"
 
 #include <algorithm>
 
 namespace clr {
-Color::Color(const RGBParameters &parameters) : _prm(parameters) {}
-
 void Color::set_params(const RGBParameters &parameters) {
     _prm = parameters;
 }

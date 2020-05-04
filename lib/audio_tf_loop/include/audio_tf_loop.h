@@ -8,7 +8,7 @@
 #include <mutex>
 #include "bass_adapter.h"
 #include "list_devices.h"
-#include "color.h"
+#include "color_settings.h"
 #include "container.h"
 #include "job_thread.h"
 
@@ -16,7 +16,7 @@ namespace loop {
 class AudioTfLoop : public executor::JobThread {
  public:
     explicit AudioTfLoop(LockFreeContainer &container,
-                         const pa::Device &device, const clr::RGBParameters &prms, size_t buf_size);
+                         const pa::Device &device, size_t buf_size);
     void set_params(const clr::RGBParameters &prms);
  private:
     void job() override;

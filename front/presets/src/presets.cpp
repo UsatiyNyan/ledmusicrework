@@ -6,17 +6,17 @@
 
 Presets::Presets(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Presets),
-    dialog(new SaveNewDial) {
-    ui->setupUi(this);
-    QObject::connect(ui->buttonSaveNew, SIGNAL(clicked()), dialog, SLOT(show()));
-    QObject::connect(dialog, SIGNAL(new_filename(QString)),
+    _ui(new Ui::Presets),
+    _dialog(new SaveNewDial) {
+    _ui->setupUi(this);
+    QObject::connect(_ui->buttonSaveNew, SIGNAL(clicked()), _dialog, SLOT(show()));
+    QObject::connect(_dialog, SIGNAL(new_filename(QString)),
                      this, SLOT(dispatch_filename(QString)));
 }
 
 Presets::~Presets() {
-    delete ui;
-    delete dialog;
+    delete _ui;
+    delete _dialog;
 }
 
 void Presets::dispatch_filename(QString filename) {
@@ -37,8 +37,8 @@ void Presets::parse_files() {
     QStringList filter;
     filter << "*" + identifier();
     presets_dir.setNameFilters(filter);
-    ui->listCfgs->clear();
-    ui->listCfgs->addItems(presets_dir.entryList());
+    _ui->listCfgs->clear();
+    _ui->listCfgs->addItems(presets_dir.entryList());
 }
 
 void Presets::showEvent(QShowEvent *event) {
@@ -52,7 +52,7 @@ void ColorsPresets::set_params(RGBParameters *params) {
 
 void ColorsPresets::on_buttonApply_clicked() {
     QStringList param_list;
-    QString filename = ui->listCfgs->currentItem()->text();
+    QString filename = _ui->listCfgs->currentItem()->text();
     QFile presets_file("presets/" + filename);
     presets_file.open(QIODevice::ReadOnly);
     _params->width = QString(presets_file.readLine()).toInt();
@@ -95,7 +95,7 @@ void AnimationPresets::set_params(Polygon *params) {
 
 void AnimationPresets::on_buttonApply_clicked() {
     QStringList param_list;
-    QString filename = ui->listCfgs->currentItem()->text();
+    QString filename = _ui->listCfgs->currentItem()->text();
     QFile presets_file("presets/" + filename);
     presets_file.open(QIODevice::ReadOnly);
     auto tmp_mode = QString(presets_file.readLine()).toInt();

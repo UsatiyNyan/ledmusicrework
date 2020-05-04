@@ -1,8 +1,8 @@
-#ifndef PRESETS_H
-#define PRESETS_H
+#ifndef LED_PLAYER_FRONT_PRESETS_SRC_PRESETS_H_
+#define LED_PLAYER_FRONT_PRESETS_SRC_PRESETS_H_
 
 #include <QWidget>
-#include "rgbparameters.h"
+#include "color_settings.h"
 #include "polygon.h"
 #include "savenewdial.h"
 
@@ -17,16 +17,16 @@ public:
     explicit Presets(QWidget *parent = nullptr);
     ~Presets() override;
     [[nodiscard]] virtual QString identifier() const = 0;
-    virtual void showEvent(QShowEvent *);
+    void showEvent(QShowEvent *) override;
 protected slots:
     virtual void dispatch_filename(QString filename);
     virtual void on_buttonApply_clicked() = 0;
     virtual void parse_files();
 protected:
     virtual QString get_param_string() = 0;
-    Ui::Presets *ui;
+    Ui::Presets *_ui;
 private:
-    SaveNewDial *dialog;
+    SaveNewDial *_dialog;
 };
 
 
@@ -62,4 +62,4 @@ private:
 };
 
 
-#endif // PRESETS_H
+#endif //LED_PLAYER_FRONT_PRESETS_SRC_PRESETS_H_

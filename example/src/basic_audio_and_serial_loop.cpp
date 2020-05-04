@@ -15,18 +15,7 @@ using namespace std::chrono_literals;
 
 int main() {
     loop::LockFreeContainer container(1024);
-    clr::RGBParameters parameters{
-        128,
-        0,
-        1024,
-        512,
-        1,
-        1,
-        1,
-        0,
-        1,
-        true
-    };
+    clr::RGBParameters parameters;
     loop::AudioTfLoop audio_tf_loop(container,
                                     pa::DeviceList().get_sources()[0],
                                     parameters, 1024);

@@ -2,11 +2,14 @@
 #define LED_PLAYER_FRONT_MAIN_WINDOW_SRC_MAIN_WINDOW_H_
 
 #include <QWidget>
+#include <QTimer>
 
 #include "devices.h"
+#include "container.h"
 #include <vector>
+#include <thread>
 
-enum Tabs {DEVICES, COLORS, SETTINGS, PREVIEW};
+enum Tabs {DEVICES, COLOR_SETTINGS, ANIMATION_SETTINGS, ANIMATION_PREVIEW};
 
 
 QT_BEGIN_NAMESPACE
@@ -17,7 +20,7 @@ class MainWindow : public QWidget {
  Q_OBJECT
 
  public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr, loop::LockFreeContainer *container = nullptr);
     ~MainWindow() override;
 
  private slots:
@@ -28,7 +31,7 @@ class MainWindow : public QWidget {
 
  private:
     Ui::MainWindow *_ui;
-
+    QTimer *_updater;
 };
 
 

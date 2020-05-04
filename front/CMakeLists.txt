@@ -9,8 +9,10 @@ set(QT_LIBS
         Qt5::SerialPort
         )
 
-add_subdirectory(devices)
-add_subdirectory(serial_port_interface)
-add_subdirectory(audio_loop_interface)
+add_subdirectory(devices) #
+add_subdirectory(serial_port_interface) #
+add_subdirectory(audio_loop_interface) #
+add_subdirectory(color_settings)
+add_subdirectory(presets)
 
 add_subdirectory(main_window)

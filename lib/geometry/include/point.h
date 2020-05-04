@@ -2,8 +2,8 @@
 // Created by kira on 30.04.2020.
 //
 
-#ifndef RPI_LED_LIB_GEOMETRY_INCLUDE_POINT_H_
-#define RPI_LED_LIB_GEOMETRY_INCLUDE_POINT_H_
+#ifndef LED_PLAYER_LIB_GEOMETRY_INCLUDE_POINT_H_
+#define LED_PLAYER_LIB_GEOMETRY_INCLUDE_POINT_H_
 
 namespace geometry {
 struct Point {
@@ -13,4 +13,4 @@ struct Point {
 }  // namespace geometry
 
 
-#endif //RPI_LED_LIB_GEOMETRY_INCLUDE_POINT_H_
+#endif //LED_PLAYER_LIB_GEOMETRY_INCLUDE_POINT_H_

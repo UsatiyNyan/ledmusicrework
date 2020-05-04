@@ -7,7 +7,7 @@
 
 #include "job_thread.h"
 #include "serial.h"
-#include "color.h"
+#include "color_settings.h"
 #include "circle.h"
 #include "polygon.h"
 

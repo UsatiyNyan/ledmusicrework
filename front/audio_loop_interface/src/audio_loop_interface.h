@@ -16,18 +16,16 @@ class AudioLoopInterface : public QWidget {
  public:
     explicit AudioLoopInterface(QWidget *parent = nullptr,
         loop::LockFreeContainer *container = nullptr,
-        clr::RGBParameters *prms = nullptr,
         size_t buf_size = 0);
     ~AudioLoopInterface() override;
 
  public slots:
     void on_start_capture(const pa::Device &audio_device);
-    void on_rgb_settings(const clr::RGBParameters &prms);
+    void on_set_params(const clr::RGBParameters &prms);
 
  private:
-    loop::LockFreeContainer *_container = nullptr;
+    loop::LockFreeContainer &_container;
     loop::AudioTfLoop *_audio_tf_loop = nullptr;
-    clr::RGBParameters *_rgb_parameters = nullptr;
     size_t _size;
 };
 

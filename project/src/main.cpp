@@ -2,43 +2,33 @@
 // Created by kira on 04.05.2020.
 //
 #include "main_window.h"
-#include <QApplication>
 #include "serial_port_interface.h"
 #include "audio_loop_interface.h"
 #include "container.h"
+
+#include <QApplication>
+
 
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-    MainWindow main_window;
+    loop::LockFreeContainer container(1024);
+
+    MainWindow main_window(nullptr, &container);
     main_window.showMaximized();
 
-    loop::LockFreeContainer container(1024);
-    clr::RGBParameters parameters{
-        128,
-        0,
-        1024,
-        512,
-        1,
-        1,
-        1,
-        0,
-        1,
-        true
-    };
-
-    clr::RGB &rgb = container.get_rgb();
-    std::vector<float> &fft = container.get_fft();
-
-    SerialPortInterface serial_port_interface(nullptr, &rgb);
-    AudioLoopInterface audio_loop_interface(nullptr, &container, &parameters, 1024);
-
+    SerialPortInterface serial_port_interface(nullptr, &container);
     QObject::connect(main_window.widgets[DEVICES], SIGNAL(start_port(const QSerialPortInfo &)),
-        &serial_port_interface, SLOT(on_start_port(const QSerialPortInfo &)));
+                     &serial_port_interface, SLOT(on_start_port(const QSerialPortInfo &)));
+    QObject::connect(main_window.widgets[COLOR_SETTINGS], SIGNAL(set_bpm(uint16_t)),
+                     &serial_port_interface, SLOT(on_set_bpm(uint16_t)));
+
+    AudioLoopInterface audio_loop_interface(nullptr, &container, 1024);
     QObject::connect(main_window.widgets[DEVICES], SIGNAL(start_capture(const pa::Device &)),
         &audio_loop_interface, SLOT(on_start_capture(const pa::Device &)));
-
+    QObject::connect(main_window.widgets[COLOR_SETTINGS], SIGNAL(set_params(const clr::RGBParameters &)),
+        &audio_loop_interface, SLOT(on_set_params(const clr::RGBParameters &)));
 
     return QApplication::exec();
 }

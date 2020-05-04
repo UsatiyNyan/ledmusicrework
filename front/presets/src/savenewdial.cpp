@@ -5,17 +5,17 @@
 
 SaveNewDial::SaveNewDial(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::SaveNewDial) {
-    ui->setupUi(this);
-    ui->editNewName->setPlainText("cool_edm_preset");
+    _ui(new Ui::SaveNewDial) {
+    _ui->setupUi(this);
+    _ui->editNewName->setPlainText("cool_edm_preset");
 }
 
 SaveNewDial::~SaveNewDial() {
-    delete ui;
+    delete _ui;
 }
 
 void SaveNewDial::on_buttonCancelOk_accepted() {
-    emit new_filename(ui->editNewName->toPlainText());
+    emit new_filename(_ui->editNewName->toPlainText());
     this->close();
 }
 

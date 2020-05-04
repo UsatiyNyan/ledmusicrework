@@ -1,5 +1,5 @@
-#ifndef SAVENEWDIAL_H
-#define SAVENEWDIAL_H
+#ifndef LED_PLAYER_FRONT_PRESETS_SRC_SAVENEWDIAL_H_
+#define LED_PLAYER_FRONT_PRESETS_SRC_SAVENEWDIAL_H_
 
 #include <QDialog>
 
@@ -13,7 +13,7 @@ Q_OBJECT
 
 public:
     explicit SaveNewDial(QWidget *parent = nullptr);
-    ~SaveNewDial();
+    ~SaveNewDial() override;
 
 signals:
     void new_filename(QString filename);
@@ -23,8 +23,8 @@ private slots:
     void on_buttonCancelOk_rejected();
 
 private:
-    Ui::SaveNewDial *ui;
+    Ui::SaveNewDial *_ui;
 };
 
 
-#endif // SAVENEWDIAL_H
+#endif //LED_PLAYER_FRONT_PRESETS_SRC_SAVENEWDIAL_H_

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<_ui version="4.0">
-    <class>color</class>
-    <widget class="QWidget" name="color">
+<ui version="4.0">
+    <class>ColorSettings</class>
+    <widget class="QWidget" name="ColorSettings">
         <property name="windowModality">
             <enum>Qt::NonModal</enum>
         </property>
@@ -398,4 +398,4 @@
     </widget>
     <resources/>
     <connections/>
-</_ui>
+</ui>

@@ -2,8 +2,8 @@
 // Created by kira on 30.04.2020.
 //
 
-#ifndef RPI_LED_LIB_POLYGON_INCLUDE_CIRCLE_H_
-#define RPI_LED_LIB_POLYGON_INCLUDE_CIRCLE_H_
+#ifndef LED_PLAYER_LIB_GEOMETRY_INCLUDE_CIRCLE_H_
+#define LED_PLAYER_LIB_GEOMETRY_INCLUDE_CIRCLE_H_
 
 #include "point.h"
 #include <vector>
@@ -30,4 +30,4 @@ class Circles {
 };
 }  // namespace geometry
 
-#endif //RPI_LED_LIB_POLYGON_INCLUDE_CIRCLE_H_
+#endif //LED_PLAYER_LIB_GEOMETRY_INCLUDE_CIRCLE_H_

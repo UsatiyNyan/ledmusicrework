@@ -17,7 +17,7 @@ void SerialThread::run() {
         serial_port->setBaudRate(QSerialPort::Baud19200);
         serial_port->setDataBits(QSerialPort::Data8);
         serial_port->setParity(QSerialPort::NoParity);
-        serial_port->setStopBits(QSerialPort::OneStop);
+        serial_port->setStopBits(QSerialPort::StopBits::);
         serial_port->setFlowControl(QSerialPort::NoFlowControl);
     }
     QByteArray send_data;
