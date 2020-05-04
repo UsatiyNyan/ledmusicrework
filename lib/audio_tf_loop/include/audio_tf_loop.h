@@ -26,7 +26,6 @@ class AudioTfLoop : public executor::JobThread {
     clr::Color _color;
     size_t _buf_size;
     std::mutex _mutex;
-//    size_t _ctr{};
 };
 }  // namespace loop
 

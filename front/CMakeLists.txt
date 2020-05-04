@@ -10,5 +10,7 @@ set(QT_LIBS
         )
 
 add_subdirectory(devices)
+add_subdirectory(serial_port_interface)
+add_subdirectory(audio_loop_interface)
 
 add_subdirectory(main_window)

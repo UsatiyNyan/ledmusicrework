@@ -1,7 +1,7 @@
 #include "devices.h"
 #include "ui_devices.h"
+
 #include <QSerialPortInfo>
-#include "list_devices.h"
 
 
 Devices::Devices(QWidget *parent) :
@@ -22,7 +22,7 @@ Devices::~Devices() {
 }
 
 void Devices::on_select_card_clicked() {
-    emit start_capture(_ui->soundCardList->currentIndex().data().toString());
+    emit start_capture(_name_device_map[_ui->soundCardList->currentIndex().data().toString().toUtf8().data()]);
 }
 
 void Devices::on_select_port_clicked() {
@@ -45,10 +45,12 @@ void Devices::load_cards() {
     pa::DeviceList device_list;
     for (const auto &sink: device_list.get_sinks()) {
         device_string_list.push_back(sink.name);
+        _name_device_map[sink.name] = sink;
     }
 
     for (const auto &source: device_list.get_sources()) {
         device_string_list.push_back(source.name);
+        _name_device_map[source.name] = source;
     }
 
     _sound_card_list->setStringList(device_string_list);

@@ -2,10 +2,11 @@
 #define LED_PLAYER_FRONT_MAIN_WINDOW_SRC_MAIN_WINDOW_H_
 
 #include <QWidget>
+
 #include "devices.h"
-//#include "player.h"
-//#include "color.h"
-//#include "animationpresettings.h"
+#include <vector>
+
+enum Tabs {DEVICES, COLORS, SETTINGS, PREVIEW};
 
 
 QT_BEGIN_NAMESPACE
@@ -13,17 +14,21 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class MainWindow : public QWidget {
-Q_OBJECT
+ Q_OBJECT
 
-public:
+ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
-private slots:
+ private slots:
     void on_previewCheckBox_stateChanged(int arg1);
 
-private:
+ public:
+    std::vector<QWidget *> widgets;
+
+ private:
     Ui::MainWindow *_ui;
+
 };
 
 

@@ -1,8 +1,6 @@
 #include "main_window.h"
 #include "ui_main_window.h"
-//#include "animation_view.h"
 
-enum Tabs {DEVICES, COLORS, SETTINGS, PREVIEW};
 
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
@@ -10,15 +8,21 @@ MainWindow::MainWindow(QWidget *parent) :
     _ui->setupUi(this);
     auto devices = new Devices(this);
 
+//    QObject::connect(_ui->buttonSubmit, SIGNAL(clicked()),
+//                     &animation_pre_settings->animation_, SLOT(on_buttonSubmit_clicked()));
+
+
     _ui->tabWidget->insertTab(DEVICES, devices, QString("devices"));
 //    _ui->tabWidget->insertTab(COLORS, color, QString("colors"));
 //    _ui->tabWidget->insertTab(SETTINGS, animation_pre_settings, QString("animation settings"));
 //    _ui->tabWidget->insertTab(PREVIEW, animation_view, QString("animation preview"));
+
+    widgets.assign({devices});
 }
 
 MainWindow::~MainWindow() {
-    for (size_t i = 0; i < 4; ++i) {
-        delete _ui->tabWidget->widget(i);
+    for (QWidget *widget: widgets) {
+        delete widget;
     }
     delete _ui;
 }

@@ -5,6 +5,9 @@
 #include <QtCore/QStringListModel>
 #include <QSerialPort>
 
+#include "list_devices.h"
+#include <map>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Devices; }
@@ -18,7 +21,7 @@ class Devices : public QWidget {
     ~Devices() override;
 
  signals:
-    void start_capture(const QString &audio_device);
+    void start_capture(const pa::Device &audio_device);
     void start_port(const QSerialPortInfo &serial_port_info);
 
  private:
@@ -33,6 +36,7 @@ class Devices : public QWidget {
     Ui::Devices *_ui;
     QStringListModel *_sound_card_list;
     QStringListModel *_ports_list;
+    std::map<std::string, pa::Device> _name_device_map;
 };
 
 
