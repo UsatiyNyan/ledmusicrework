@@ -1,0 +1,3 @@
+add_library(file_descriptor STATIC src/file_descriptor.cpp)
+target_include_directories(file_descriptor PUBLIC include)
+target_link_libraries(file_descriptor PUBLIC base_exception)

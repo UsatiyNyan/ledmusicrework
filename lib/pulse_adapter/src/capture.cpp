@@ -9,11 +9,10 @@
 #include <pulse/error.h>
 #include <endian.h>
 
-
 using exception::Exception;
 
 namespace pa {
-Capture::Capture(const std::string& device, uint32_t freq, uint8_t chans) {
+Capture::Capture(const std::string &device, uint32_t freq, uint8_t chans) {
     if (BYTE_ORDER == LITTLE_ENDIAN) {
         _sample_spec = {
             .format = PA_SAMPLE_FLOAT32LE,
@@ -28,8 +27,8 @@ Capture::Capture(const std::string& device, uint32_t freq, uint8_t chans) {
 
     int error = 0;
     _simple = pa_simple_new(nullptr, "player_usage", PA_STREAM_RECORD,
-                           device.c_str(), "record", &_sample_spec,
-                           nullptr, nullptr, &error);
+                            device.c_str(), "record", &_sample_spec,
+                            nullptr, nullptr, &error);
     if (error) {
         throw Exception("pa_simple_new: " + std::string(pa_strerror(error)));
     }

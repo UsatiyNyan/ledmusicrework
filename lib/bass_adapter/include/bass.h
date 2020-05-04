@@ -19,7 +19,6 @@ typedef unsigned __int64 QWORD;
 #else
 #include <stdint.h>
 
-
 #define WINAPI
 #define CALLBACK
 
@@ -1037,17 +1036,30 @@ BOOL BASSDEF(BASS_Set3DPosition)(const BASS_3DVECTOR *pos,
                                  const BASS_3DVECTOR *vel,
                                  const BASS_3DVECTOR *front,
                                  const BASS_3DVECTOR *top);
-BOOL BASSDEF(BASS_Get3DPosition)(BASS_3DVECTOR *pos, BASS_3DVECTOR *vel, BASS_3DVECTOR *front, BASS_3DVECTOR *top);
+BOOL BASSDEF(BASS_Get3DPosition)(BASS_3DVECTOR *pos,
+                                 BASS_3DVECTOR *vel,
+                                 BASS_3DVECTOR *front,
+                                 BASS_3DVECTOR *top);
 void BASSDEF(BASS_Apply3D)();
 #if defined(_WIN32) && !defined(_WIN32_WCE) && !(WINAPI_FAMILY && WINAPI_FAMILY != WINAPI_FAMILY_DESKTOP_APP)
 BOOL BASSDEF(BASS_SetEAXParameters)(int env, float vol, float decay, float damp);
 BOOL BASSDEF(BASS_GetEAXParameters)(DWORD *env, float *vol, float *decay, float *damp);
 #endif
 
-HMUSIC BASSDEF(BASS_MusicLoad)(BOOL mem, const void *file, QWORD offset, DWORD length, DWORD flags, DWORD freq);
+HMUSIC BASSDEF(BASS_MusicLoad)(BOOL mem,
+                               const void *file,
+                               QWORD offset,
+                               DWORD length,
+                               DWORD flags,
+                               DWORD freq);
 BOOL BASSDEF(BASS_MusicFree)(HMUSIC handle);
 
-HSAMPLE BASSDEF(BASS_SampleLoad)(BOOL mem, const void *file, QWORD offset, DWORD length, DWORD max, DWORD flags);
+HSAMPLE BASSDEF(BASS_SampleLoad)(BOOL mem,
+                                 const void *file,
+                                 QWORD offset,
+                                 DWORD length,
+                                 DWORD max,
+                                 DWORD flags);
 HSAMPLE BASSDEF(BASS_SampleCreate)(DWORD length, DWORD freq, DWORD chans, DWORD max, DWORD flags);
 BOOL BASSDEF(BASS_SampleFree)(HSAMPLE handle);
 BOOL BASSDEF(BASS_SampleSetData)(HSAMPLE handle, const void *buffer);
@@ -1060,7 +1072,11 @@ BOOL BASSDEF(BASS_SampleStop)(HSAMPLE handle);
 
 HSTREAM BASSDEF(BASS_StreamCreate)(DWORD freq, DWORD chans, DWORD flags, STREAMPROC *proc, void *user);
 HSTREAM BASSDEF(BASS_StreamCreateFile)(BOOL mem, const void *file, QWORD offset, QWORD length, DWORD flags);
-HSTREAM BASSDEF(BASS_StreamCreateURL)(const char *url, DWORD offset, DWORD flags, DOWNLOADPROC *proc, void *user);
+HSTREAM BASSDEF(BASS_StreamCreateURL)(const char *url,
+                                      DWORD offset,
+                                      DWORD flags,
+                                      DOWNLOADPROC *proc,
+                                      void *user);
 HSTREAM BASSDEF(BASS_StreamCreateFileUser)(DWORD system, DWORD flags, const BASS_FILEPROCS *proc, void *user);
 BOOL BASSDEF(BASS_StreamFree)(HSTREAM handle);
 QWORD BASSDEF(BASS_StreamGetFilePosition)(HSTREAM handle, DWORD mode);
@@ -1115,7 +1131,10 @@ BOOL BASSDEF(BASS_ChannelSet3DPosition)(DWORD handle,
                                         const BASS_3DVECTOR *pos,
                                         const BASS_3DVECTOR *orient,
                                         const BASS_3DVECTOR *vel);
-BOOL BASSDEF(BASS_ChannelGet3DPosition)(DWORD handle, BASS_3DVECTOR *pos, BASS_3DVECTOR *orient, BASS_3DVECTOR *vel);
+BOOL BASSDEF(BASS_ChannelGet3DPosition)(DWORD handle,
+                                        BASS_3DVECTOR *pos,
+                                        BASS_3DVECTOR *orient,
+                                        BASS_3DVECTOR *vel);
 QWORD BASSDEF(BASS_ChannelGetLength)(DWORD handle, DWORD mode);
 BOOL BASSDEF(BASS_ChannelSetPosition)(DWORD handle, QWORD pos, DWORD mode);
 QWORD BASSDEF(BASS_ChannelGetPosition)(DWORD handle, DWORD mode);

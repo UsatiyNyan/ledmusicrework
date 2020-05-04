@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<_ui version="4.0">
+    <class>color</class>
+    <widget class="QWidget" name="color">
+        <property name="windowModality">
+            <enum>Qt::NonModal</enum>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>800</width>
+                <height>443</height>
+            </rect>
+        </property>
+        <property name="minimumSize">
+            <size>
+                <width>600</width>
+                <height>200</height>
+            </size>
+        </property>
+        <property name="windowTitle">
+            <string>Colors</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+            <item row="0" column="0">
+                <layout class="QVBoxLayout" name="verticalLayoutGeneral">
+                    <item>
+                        <spacer name="verticalSpacer_2">
+                            <property name="orientation">
+                                <enum>Qt::Vertical</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>QSizePolicy::Fixed</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                                <size>
+                                    <width>10</width>
+                                    <height>10</height>
+                                </size>
+                            </property>
+                        </spacer>
+                    </item>
+                    <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout">
+                            <item>
+                                <spacer name="horizontalSpacer">
+                                    <property name="orientation">
+                                        <enum>Qt::Horizontal</enum>
+                                    </property>
+                                    <property name="sizeType">
+                                        <enum>QSizePolicy::Fixed</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                        <size>
+                                            <width>10</width>
+                                            <height>20</height>
+                                        </size>
+                                    </property>
+                                </spacer>
+                            </item>
+                            <item>
+                                <layout class="QVBoxLayout" name="verticalLayout_2">
+                                    <item>
+                                        <widget class="QLabel" name="labelWidth">
+                                            <property name="text">
+                                                <string>width</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QSlider" name="sliderWidth">
+                                            <property name="orientation">
+                                                <enum>Qt::Vertical</enum>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <spacer name="verticalSpacer_5">
+                                            <property name="orientation">
+                                                <enum>Qt::Vertical</enum>
+                                            </property>
+                                            <property name="sizeType">
+                                                <enum>QSizePolicy::Fixed</enum>
+                                            </property>
+                                            <property name="sizeHint" stdset="0">
+                                                <size>
+                                                    <width>20</width>
+                                                    <height>30</height>
+                                                </size>
+                                            </property>
+                                        </spacer>
+                                    </item>
+                                </layout>
+                            </item>
+                            <item>
+                                <layout class="QVBoxLayout" name="verticalLayout_3">
+                                    <property name="sizeConstraint">
+                                        <enum>QLayout::SetMaximumSize</enum>
+                                    </property>
+                                    <item>
+                                        <layout class="QHBoxLayout" name="horizontalLayout_3">
+                                            <item>
+                                                <widget class="QLabel" name="labelR">
+                                                    <property name="text">
+                                                        <string>R</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QSlider" name="sliderRed">
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>0</width>
+                                                            <height>0</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="orientation">
+                                                        <enum>Qt::Horizontal</enum>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </item>
+                                    <item>
+                                        <layout class="QHBoxLayout" name="horizontalLayout_4">
+                                            <item>
+                                                <widget class="QLabel" name="labelG">
+                                                    <property name="text">
+                                                        <string>G</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QSlider" name="sliderGreen">
+                                                    <property name="orientation">
+                                                        <enum>Qt::Horizontal</enum>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </item>
+                                    <item>
+                                        <layout class="QHBoxLayout" name="horizontalLayout_5">
+                                            <item>
+                                                <widget class="QLabel" name="labelB">
+                                                    <property name="text">
+                                                        <string>B</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QSlider" name="sliderBlue">
+                                                    <property name="orientation">
+                                                        <enum>Qt::Horizontal</enum>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </item>
+                                    <item>
+                                        <spacer name="horizontalSpacer_2">
+                                            <property name="orientation">
+                                                <enum>Qt::Horizontal</enum>
+                                            </property>
+                                            <property name="sizeHint" stdset="0">
+                                                <size>
+                                                    <width>40</width>
+                                                    <height>20</height>
+                                                </size>
+                                            </property>
+                                        </spacer>
+                                    </item>
+                                    <item>
+                                        <spacer name="verticalSpacer">
+                                            <property name="orientation">
+                                                <enum>Qt::Vertical</enum>
+                                            </property>
+                                            <property name="sizeHint" stdset="0">
+                                                <size>
+                                                    <width>20</width>
+                                                    <height>40</height>
+                                                </size>
+                                            </property>
+                                        </spacer>
+                                    </item>
+                                </layout>
+                            </item>
+                            <item>
+                                <layout class="QVBoxLayout" name="verticalLayout_5">
+                                    <item>
+                                        <layout class="QGridLayout" name="gridLayout">
+                                            <property name="sizeConstraint">
+                                                <enum>QLayout::SetMinimumSize</enum>
+                                            </property>
+                                            <item row="6" column="2">
+                                                <widget class="QDial" name="nobImpactB"/>
+                                            </item>
+                                            <item row="0" column="2">
+                                                <widget class="QLabel" name="label">
+                                                    <property name="text">
+                                                        <string>BPM</string>
+                                                    </property>
+                                                    <property name="alignment">
+                                                        <set>Qt::AlignCenter</set>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="5" column="1">
+                                                <widget class="QLabel" name="label_4">
+                                                    <property name="text">
+                                                        <string>G</string>
+                                                    </property>
+                                                    <property name="alignment">
+                                                        <set>Qt::AlignCenter</set>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="5" column="0">
+                                                <widget class="QLabel" name="label_2">
+                                                    <property name="text">
+                                                        <string>R</string>
+                                                    </property>
+                                                    <property name="alignment">
+                                                        <set>Qt::AlignCenter</set>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="2" column="2">
+                                                <widget class="QPlainTextEdit" name="editBPM">
+                                                    <property name="maximumSize">
+                                                        <size>
+                                                            <width>90</width>
+                                                            <height>30</height>
+                                                        </size>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="6" column="1">
+                                                <widget class="QDial" name="nobImpactG"/>
+                                            </item>
+                                            <item row="4" column="1">
+                                                <widget class="QLabel" name="label_3">
+                                                    <property name="text">
+                                                        <string>impact level</string>
+                                                    </property>
+                                                    <property name="alignment">
+                                                        <set>Qt::AlignCenter</set>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="0" column="1">
+                                                <widget class="QLabel" name="labelFilter">
+                                                    <property name="text">
+                                                        <string>filter</string>
+                                                    </property>
+                                                    <property name="alignment">
+                                                        <set>Qt::AlignCenter</set>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="1" column="1">
+                                                <widget class="QDial" name="nobFilter">
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>90</width>
+                                                            <height>90</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="maximumSize">
+                                                        <size>
+                                                            <width>90</width>
+                                                            <height>90</height>
+                                                        </size>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="5" column="2">
+                                                <widget class="QLabel" name="label_5">
+                                                    <property name="text">
+                                                        <string>B</string>
+                                                    </property>
+                                                    <property name="alignment">
+                                                        <set>Qt::AlignCenter</set>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="1" column="0">
+                                                <widget class="QDial" name="nobSensitivity">
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>90</width>
+                                                            <height>90</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="maximumSize">
+                                                        <size>
+                                                            <width>90</width>
+                                                            <height>90</height>
+                                                        </size>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="6" column="0">
+                                                <widget class="QDial" name="nobImpactR"/>
+                                            </item>
+                                            <item row="1" column="2">
+                                                <widget class="QDial" name="nobBPM">
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>90</width>
+                                                            <height>90</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="maximumSize">
+                                                        <size>
+                                                            <width>90</width>
+                                                            <height>90</height>
+                                                        </size>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="0" column="0">
+                                                <widget class="QLabel" name="labelSensitivity">
+                                                    <property name="text">
+                                                        <string>sensitivity</string>
+                                                    </property>
+                                                    <property name="alignment">
+                                                        <set>Qt::AlignCenter</set>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="3" column="2">
+                                                <spacer name="verticalSpacer_3">
+                                                    <property name="orientation">
+                                                        <enum>Qt::Vertical</enum>
+                                                    </property>
+                                                    <property name="sizeHint" stdset="0">
+                                                        <size>
+                                                            <width>20</width>
+                                                            <height>40</height>
+                                                        </size>
+                                                    </property>
+                                                </spacer>
+                                            </item>
+                                        </layout>
+                                    </item>
+                                    <item>
+                                        <widget class="QCheckBox" name="checkMinFilter">
+                                            <property name="text">
+                                                <string>Filter by minimum</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <spacer name="verticalSpacer_4">
+                                            <property name="orientation">
+                                                <enum>Qt::Vertical</enum>
+                                            </property>
+                                            <property name="sizeType">
+                                                <enum>QSizePolicy::Fixed</enum>
+                                            </property>
+                                            <property name="sizeHint" stdset="0">
+                                                <size>
+                                                    <width>20</width>
+                                                    <height>20</height>
+                                                </size>
+                                            </property>
+                                        </spacer>
+                                    </item>
+                                    <item>
+                                        <widget class="QPushButton" name="buttonReset">
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>16777215</width>
+                                                    <height>16777215</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>reset</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QPushButton" name="buttonPresets">
+                                            <property name="text">
+                                                <string>presets</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </item>
+                        </layout>
+                    </item>
+                </layout>
+            </item>
+        </layout>
+    </widget>
+    <resources/>
+    <connections/>
+</_ui>

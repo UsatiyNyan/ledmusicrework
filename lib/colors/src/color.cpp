@@ -5,8 +5,6 @@
 #include "color.h"
 
 #include <algorithm>
-#include <iostream>
-
 
 namespace clr {
 Color::Color(const RGBParameters &parameters) : _prm(parameters) {}
@@ -54,18 +52,18 @@ RGB Color::compute_rgb(const std::vector<float> &fft_data) {
         b -= min_clr;
     }
 
-    r = r * _prm.sensitivity * _prm.red_imp / static_cast<float>(fft_data.size() * 2) ;
-    g = g * _prm.sensitivity * _prm.green_imp / static_cast<float>(fft_data.size() * 2) ;
-    b = b * _prm.sensitivity * _prm.blue_imp / static_cast<float>(fft_data.size() * 2) ;
+    r = r * _prm.sensitivity * _prm.red_imp / static_cast<float>(fft_data.size() * 2);
+    g = g * _prm.sensitivity * _prm.green_imp / static_cast<float>(fft_data.size() * 2);
+    b = b * _prm.sensitivity * _prm.blue_imp / static_cast<float>(fft_data.size() * 2);
 
-    std::cout << static_cast<int>(r) << " | "
-              << static_cast<int>(g) << " | "
-              << static_cast<int>(b) << std::endl;
+    r = r > 255 ? 255 : r;
+    g = g > 255 ? 255 : g;
+    b = b > 255 ? 255 : b;
 
     return {
-        .r = static_cast<uint8_t>(static_cast<int>(r) % 256),
-        .g = static_cast<uint8_t>(static_cast<int>(g) % 256),
-        .b = static_cast<uint8_t>(static_cast<int>(b) % 256)
+        .r = static_cast<unsigned>(r),
+        .g = static_cast<unsigned>(g),
+        .b = static_cast<unsigned>(b)
     };
 }
 }  // namespace colors

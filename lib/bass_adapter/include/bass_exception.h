@@ -9,12 +9,12 @@
 #include <string>
 
 namespace bass {
- class BassException: public std::exception {
+class BassException : public std::exception {
  public:
-     explicit BassException(std::string es);
-     [[nodiscard]] const char *what() const noexcept override;
-  private:
-     std::string _errstr;
+    explicit BassException(std::string es);
+    [[nodiscard]] const char *what() const noexcept override;
+ private:
+    std::string _errstr;
 };
 }  // namespace bass
 

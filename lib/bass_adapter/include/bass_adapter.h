@@ -11,7 +11,7 @@
 namespace bass {
 class Adapter {
  public:
-    Adapter(const std::string& device, uint32_t freq, uint8_t chans);
+    Adapter(const std::string &device, uint32_t freq, uint8_t chans);
     ~Adapter();
 
     void dispatch_audio_sample(std::vector<float> &buf);
