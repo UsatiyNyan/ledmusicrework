@@ -131,11 +131,11 @@
                     <item row="0" column="2">
                         <widget class="QComboBox" name="selectMode">
                             <property name="currentIndex">
-                                <number>2</number>
+                                <number>0</number>
                             </property>
                             <item>
                                 <property name="text">
-                                    <string>Polygon</string>
+                                    <string>Basic</string>
                                 </property>
                             </item>
                             <item>
@@ -145,7 +145,7 @@
                             </item>
                             <item>
                                 <property name="text">
-                                    <string>Basic</string>
+                                    <string>Polygon</string>
                                 </property>
                             </item>
                         </widget>

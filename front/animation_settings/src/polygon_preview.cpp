@@ -26,14 +26,17 @@ PolygonPreview::~PolygonPreview() {
 
 void PolygonPreview::on_buttonSubmit_clicked() {
     switch (_mode) {
-        case BASIC: {
+        case PreviewBASIC: {
             emit set_basic();
+            break;
         }
-        case CIRCLE: {
+        case PreviewCIRCLE: {
             emit set_circle(_base_center);
+            break;
         }
-        case POLYGON: {
+        case PreviewPOLYGON: {
             emit set_polygon(_base_verices, _base_degree);
+            break;
         }
     }
 }
@@ -41,15 +44,16 @@ void PolygonPreview::on_buttonSubmit_clicked() {
 void PolygonPreview::on_new_mode(int mode) {
     _mode = mode;
     switch (_mode) {
-        case BASIC: {
+        case PreviewBASIC: {
             _ui->spinBox->setDisabled(true);
             _ui->editRotation->setDisabled(true);
             for (auto &coord : _text_coords) {
                 coord.first->setDisabled(true);
                 coord.second->setDisabled(true);
             }
+            break;
         }
-        case CIRCLE: {
+        case PreviewCIRCLE: {
             _ui->editRotation->setDisabled(true);
             _text_coords[0].first->setEnabled(true);
             _text_coords[0].second->setEnabled(true);
@@ -59,14 +63,16 @@ void PolygonPreview::on_new_mode(int mode) {
                 _text_coords[i].first->setDisabled(true);
                 _text_coords[i].second->setDisabled(true);
             }
+            break;
         }
-        case POLYGON: {
+        case PreviewPOLYGON: {
             _ui->spinBox->setEnabled(true);
             _ui->editRotation->setEnabled(true);
             for (auto &coord : _text_coords) {
                 coord.first->setEnabled(true);
                 coord.second->setEnabled(true);
             }
+            break;
         }
     }
 }
@@ -120,14 +126,14 @@ void PolygonPreview::paintEvent(QPaintEvent *) {
     painter->setPen(color);
 
     switch (_mode) {
-        case BASIC: {
+        case PreviewBASIC: {
             break;
         }
-        case CIRCLE: {
+        case PreviewCIRCLE: {
             painter->drawEllipse(QPointF{_base_center.x, _base_center.y}, 64, 64);
             break;
         }
-        case POLYGON: {
+        case PreviewPOLYGON: {
             std::vector<QPointF> q_points;
             for (const auto &vertex: _base_verices) {
                 q_points.emplace_back(vertex.x * 64, vertex.y * 64);

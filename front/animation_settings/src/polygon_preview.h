@@ -12,8 +12,10 @@
 #include "rgb.h"
 //#include "presets.h"
 
+constexpr int PreviewBASIC = 0;
+constexpr int PreviewCIRCLE = 1;
+constexpr int PreviewPOLYGON = 2;
 
-enum AnimationMode : int {POLYGON = 0, CIRCLE = 1, BASIC = 2};
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class PolygonPreview; }
@@ -51,7 +53,7 @@ class PolygonPreview : public QWidget {
 
  private:
     Ui::PolygonPreview *_ui;
-    int _mode = BASIC;
+    int _mode = PreviewBASIC;
     std::vector<geometry::Point> _base_verices{{{0, 0}}};
     geometry::Point _base_center{0, 0};
     int16_t _base_degree = 0;
