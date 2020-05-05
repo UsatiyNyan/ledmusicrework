@@ -14,6 +14,6 @@ add_subdirectory(serial_port_interface) #
 add_subdirectory(audio_loop_interface) #
 add_subdirectory(color_settings)
 add_subdirectory(animation_view) #
+add_subdirectory(animation_settings)
 add_subdirectory(presets)
-
 add_subdirectory(main_window)

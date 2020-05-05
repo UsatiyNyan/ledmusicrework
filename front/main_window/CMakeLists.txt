@@ -8,4 +8,5 @@ target_link_libraries(main_window
         color_settings
         audio_tf_loop
         animation_view
+        animation_settings
         )

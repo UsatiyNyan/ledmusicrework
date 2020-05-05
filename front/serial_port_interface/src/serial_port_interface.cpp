@@ -1,5 +1,8 @@
 #include <string>
 #include "serial_port_interface.h"
+#include <chrono>
+
+using namespace std::chrono_literals;
 
 
 SerialPortInterface::SerialPortInterface(QWidget *parent, loop::LockFreeContainer *container) :
@@ -23,14 +26,13 @@ void SerialPortInterface::on_set_basic() {
 void SerialPortInterface::on_set_circle(geometry::Point center) {
     _serial_loop->set_circle(center);
 }
-void SerialPortInterface::on_set_polygon(const std::vector<geometry::Point> &vertices) {
+void SerialPortInterface::on_set_polygon(const std::vector<geometry::Point> &vertices, int16_t degree) {
     _serial_loop->set_polygon(vertices);
+    std::this_thread::sleep_for(200ms);
+    _serial_loop->set_rotation(degree);
 }
 void SerialPortInterface::on_set_bpm(uint16_t bpm) {
     _serial_loop->set_bpm(bpm);
-}
-void SerialPortInterface::on_set_rotation(uint8_t degree) {
-    _serial_loop->set_rotation(degree);
 }
 void SerialPortInterface::on_set_length_and_width(uint16_t length, uint16_t width) {
     _serial_loop->set_length_and_width(length, width);

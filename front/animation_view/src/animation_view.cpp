@@ -29,7 +29,7 @@ void AnimationView::paintEvent(QPaintEvent *) {
 
     _rgb_queue.update();
     for (size_t i = 0; i < _rgb_queue.size(); ++i) {
-        auto rgb =  _rgb_queue[i];
+        auto rgb = _rgb_queue[i];
         auto color = QColor(
             static_cast<int>(rgb.r),
             static_cast<int>(rgb.g),
@@ -38,14 +38,14 @@ void AnimationView::paintEvent(QPaintEvent *) {
         painter->setBrush(color);
         painter->setPen(color);
         if (_is_circle) {
-            auto circle = _circles[i];
+            auto &circle = _circles[i];
             QPointF center{
                 circle.get_center().x,
                 circle.get_center().y
             };
             painter->drawEllipse(center, circle.get_radius(), circle.get_radius());
         } else {
-            auto vertices = _polygons[i].get_vertices();
+            auto &vertices = _polygons[i].get_vertices();
             QPolygon polygon{static_cast<int>(vertices.size())};
             for (const auto &vertex: vertices) {
                 polygon.push_back(QPoint(

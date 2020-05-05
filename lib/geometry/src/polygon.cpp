@@ -13,8 +13,16 @@ Polygon::Polygon(const std::vector<Point> &vertices)
         float sqrt_x2y2 = std::sqrt(vertex.x * vertex.x + vertex.y * vertex.y);
         float cos = vertex.x / sqrt_x2y2;
         float sin = vertex.y / sqrt_x2y2;
-        _expander.push_back({(cos + vertex.x) / vertex.x , (sin + vertex.y) / vertex.y});
+        _expander.push_back({16 * (cos + vertex.x) / vertex.x , 16 * (sin + vertex.y) / vertex.y});
     }
+}
+Polygon::Polygon(const Polygon &other) {
+    _vertices = other._vertices;
+    _expander = other._expander;
+}
+Polygon::Polygon(Polygon &&other) noexcept {
+    this->_vertices = std::move(other._vertices);
+    this->_expander = std::move(other._expander);
 }
 void Polygon::expand(const std::vector<Point> &tr_matrix) {
     if (tr_matrix.size() != 2) {

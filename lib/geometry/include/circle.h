@@ -12,6 +12,8 @@ namespace geometry {
 class Circle {
  public:
     explicit Circle(const Point &center);
+    Circle(const Circle &other);
+    Circle(Circle &&other) noexcept;
     void expand();
     [[nodiscard]] Point get_center() const;
     [[nodiscard]] size_t get_radius() const;

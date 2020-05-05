@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<_ui version="4.0">
-    <class>AnimationPreSettings</class>
-    <widget class="QWidget" name="AnimationPreSettings">
+<ui version="4.0">
+    <class>AnimationSettings</class>
+    <widget class="QWidget" name="AnimationSettings">
         <property name="geometry">
             <rect>
                 <x>0</x>
@@ -203,4 +203,4 @@
     </widget>
     <resources/>
     <connections/>
-</_ui>
+</ui>

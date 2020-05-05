@@ -12,6 +12,8 @@ namespace geometry {
 class Polygon {
  public:
     explicit Polygon(const std::vector<Point> &vertices);
+    Polygon(const Polygon &other);
+    Polygon(Polygon &&other) noexcept;
     void expand(const std::vector<Point> &tr_matrix);
     Point &operator[](size_t i);
     [[nodiscard]] const std::vector<Point> &get_vertices() const;

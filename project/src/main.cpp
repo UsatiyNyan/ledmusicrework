@@ -23,6 +23,12 @@ int main(int argc, char *argv[]) {
                      &serial_port_interface, SLOT(on_start_port(const QSerialPortInfo &)));
     QObject::connect(main_window.widgets[COLOR_SETTINGS], SIGNAL(set_bpm(uint16_t)),
                      &serial_port_interface, SLOT(on_set_bpm(uint16_t)));
+    QObject::connect(main_window.widgets[POLYGON_PREVIEW], SIGNAL(set_circle(geometry::Point)),
+                     &serial_port_interface, SLOT(on_set_circle(geometry::Point)));
+    QObject::connect(main_window.widgets[POLYGON_PREVIEW], SIGNAL(set_polygon(const std::vector<geometry::Point> &, int16_t)),
+                     &serial_port_interface, SLOT(on_set_polygon(const std::vector<geometry::Point> &, int16_t)));
+    QObject::connect(main_window.widgets[POLYGON_PREVIEW], SIGNAL(set_basic()),
+                     &serial_port_interface, SLOT(on_set_basic()));
 
     AudioLoopInterface audio_loop_interface(nullptr, &container, 1024);
     QObject::connect(main_window.widgets[DEVICES], SIGNAL(start_capture(const pa::Device &)),

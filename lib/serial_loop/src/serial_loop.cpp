@@ -5,7 +5,7 @@
 #include "serial_loop.h"
 #include "base_exception.h"
 #include <chrono>
-
+//#include <iostream>
 
 using namespace std::chrono_literals;
 
@@ -53,18 +53,30 @@ void SerialLoop::set_basic() {
     _mode = BASIC;
 }
 void SerialLoop::set_circle(geometry::Point center) {
+    center.x += 500;
+    center.y += 500;
     _settings_buf.assign({
         CIRCLE,
-        static_cast<uint8_t>(127 + static_cast<int>(center.x)),
-        static_cast<uint8_t>(127 + static_cast<int>(center.y))
+        static_cast<uint8_t>('0' + static_cast<int>(center.x) / 100),
+        static_cast<uint8_t>('0' + static_cast<int>(center.x) / 10 % 10),
+        static_cast<uint8_t>('0' + static_cast<int>(center.x) % 10),
+        static_cast<uint8_t>('0' + static_cast<int>(center.y) / 100),
+        static_cast<uint8_t>('0' + static_cast<int>(center.y) / 10 % 10),
+        static_cast<uint8_t>('0' + static_cast<int>(center.y) % 10)
         });
     _mode = CIRCLE;
 }
-void SerialLoop::set_polygon(const std::vector<geometry::Point>& vertices) {  // TODO
+void SerialLoop::set_polygon(const std::vector<geometry::Point>& vertices) {
     _settings_buf.assign({ POLYGON });
-    for (const auto &vertex: vertices) {
-        _settings_buf.push_back(static_cast<uint8_t>(vertex.x));
-        _settings_buf.push_back(static_cast<uint8_t>(vertex.y));
+    for (auto &vertex: std::vector(vertices)) {
+        vertex.x += 500;
+        vertex.y += 500;
+        _settings_buf.push_back(static_cast<uint8_t>('0' + static_cast<int>(vertex.x) / 100));
+        _settings_buf.push_back(static_cast<uint8_t>('0' + static_cast<int>(vertex.x) / 10 % 10));
+        _settings_buf.push_back(static_cast<uint8_t>('0' + static_cast<int>(vertex.x) % 10));
+        _settings_buf.push_back(static_cast<uint8_t>('0' + static_cast<int>(vertex.y) / 100));
+        _settings_buf.push_back(static_cast<uint8_t>('0' + static_cast<int>(vertex.y) / 10 % 10));
+        _settings_buf.push_back(static_cast<uint8_t>('0' + static_cast<int>(vertex.y) % 10));
     }
     _mode = POLYGON;
 }

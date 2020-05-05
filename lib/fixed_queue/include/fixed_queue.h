@@ -16,28 +16,28 @@ class FixedQueue {
     explicit FixedQueue(size_t size)
         : _data(size, T()) {}
 
-    void push_back(T &&item) {
-        std::unique_lock _(_mutex);
-        _data.pop_back();
-        _data.push_front(item);
-    }
+//    void push_back(T &&item) {
+//        std::unique_lock _(_mutex);
+//        _data.pop_front();
+//        _data.push_back(item);
+//    }
     void push_back(const T &item) {
         std::unique_lock _(_mutex);
-        _data.pop_back();
-        _data.push_front(item);
+        _data.pop_front();
+        _data.push_back(item);
     }
     T const &operator[](size_t i) const {
         return _retriever[i];
     }
     [[nodiscard]] const T &back() const {
-        return _data.front();
+        return _data.back();
     }
     [[nodiscard]] size_t size() const {
         return _data.size();
     }
     void update() {
         std::unique_lock _(_mutex);
-        _retriever.assign(_data.rbegin(), _data.rend());
+        _retriever.assign(_data.begin(), _data.end());
     }
  private:
     std::deque<T> _data;
