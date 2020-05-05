@@ -33,5 +33,5 @@ void AnimationSettings::on_selectMode_currentIndexChanged(int index) {
     }
 }
 void AnimationSettings::on_new_setting() {
-    _ui->selectMode->setCurrentIndex(_polygon_preview._mode);
+    _ui->selectMode->setCurrentIndex(static_cast<int>(_polygon_preview._mode));
 }

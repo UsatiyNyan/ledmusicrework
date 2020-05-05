@@ -26,15 +26,15 @@ PolygonPreview::~PolygonPreview() {
 
 void PolygonPreview::on_buttonSubmit_clicked() {
     switch (_mode) {
-        case PreviewBASIC: {
+        case AnimationMode::BASIC: {
             emit set_basic();
             break;
         }
-        case PreviewCIRCLE: {
+        case AnimationMode::CIRCLE: {
             emit set_circle(_base_center);
             break;
         }
-        case PreviewPOLYGON: {
+        case AnimationMode::POLYGON: {
             emit set_polygon(_base_verices, _base_degree);
             break;
         }
@@ -42,9 +42,9 @@ void PolygonPreview::on_buttonSubmit_clicked() {
 }
 
 void PolygonPreview::on_new_mode(int mode) {
-    _mode = mode;
+    _mode = static_cast<AnimationMode>(mode);
     switch (_mode) {
-        case PreviewBASIC: {
+        case AnimationMode::BASIC: {
             _ui->spinBox->setDisabled(true);
             _ui->editRotation->setDisabled(true);
             for (auto &coord : _text_coords) {
@@ -53,7 +53,7 @@ void PolygonPreview::on_new_mode(int mode) {
             }
             break;
         }
-        case PreviewCIRCLE: {
+        case AnimationMode::CIRCLE: {
             _ui->editRotation->setDisabled(true);
             _text_coords[0].first->setEnabled(true);
             _text_coords[0].second->setEnabled(true);
@@ -65,7 +65,7 @@ void PolygonPreview::on_new_mode(int mode) {
             }
             break;
         }
-        case PreviewPOLYGON: {
+        case AnimationMode::POLYGON: {
             _ui->spinBox->setEnabled(true);
             _ui->editRotation->setEnabled(true);
             for (auto &coord : _text_coords) {
@@ -126,14 +126,14 @@ void PolygonPreview::paintEvent(QPaintEvent *) {
     painter->setPen(color);
 
     switch (_mode) {
-        case PreviewBASIC: {
+        case AnimationMode::BASIC: {
             break;
         }
-        case PreviewCIRCLE: {
+        case AnimationMode::CIRCLE: {
             painter->drawEllipse(QPointF{_base_center.x, _base_center.y}, 64, 64);
             break;
         }
-        case PreviewPOLYGON: {
+        case AnimationMode::POLYGON: {
             std::vector<QPointF> q_points;
             for (const auto &vertex: _base_verices) {
                 q_points.emplace_back(vertex.x * 64, vertex.y * 64);

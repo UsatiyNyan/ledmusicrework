@@ -8,6 +8,7 @@
 #include "container.h"
 #include <vector>
 #include <thread>
+#include <memory>
 
 enum Tabs {DEVICES, COLOR_SETTINGS, ANIMATION_VIEW, ANIMATION_SETTINGS, POLYGON_PREVIEW};
 
