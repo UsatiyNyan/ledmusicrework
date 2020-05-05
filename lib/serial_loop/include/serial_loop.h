@@ -29,7 +29,7 @@ class SerialLoop : public executor::JobThread {
     void set_circle(geometry::Point center);
     void set_polygon(const std::vector<geometry::Point>& vertices);
     void set_bpm(uint16_t bpm);
-    void set_rotation(uint8_t degree);
+    void set_rotation(int16_t degree);
     void set_length_and_width(uint16_t length, uint16_t width);
  private:
     void job() override;

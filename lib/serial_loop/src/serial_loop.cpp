@@ -55,12 +55,12 @@ void SerialLoop::set_basic() {
 void SerialLoop::set_circle(geometry::Point center) {
     _settings_buf.assign({
         CIRCLE,
-        static_cast<uint8_t>(center.x),
-        static_cast<uint8_t>(center.y)
+        static_cast<uint8_t>(127 + static_cast<int>(center.x)),
+        static_cast<uint8_t>(127 + static_cast<int>(center.y))
         });
     _mode = CIRCLE;
 }
-void SerialLoop::set_polygon(const std::vector<geometry::Point>& vertices) {
+void SerialLoop::set_polygon(const std::vector<geometry::Point>& vertices) {  // TODO
     _settings_buf.assign({ POLYGON });
     for (const auto &vertex: vertices) {
         _settings_buf.push_back(static_cast<uint8_t>(vertex.x));
@@ -77,8 +77,14 @@ void SerialLoop::set_bpm(uint16_t bpm) {
     });
     _mode = BPM;
 }
-void SerialLoop::set_rotation(uint8_t degree) {
-    _settings_buf.assign({ROTATION, degree});
+void SerialLoop::set_rotation(int16_t degree) {
+    degree += 180;
+    _settings_buf.assign({
+        ROTATION,
+        static_cast<uint8_t>('0' + degree / 100),
+        static_cast<uint8_t>('0' + degree / 10 % 10),
+        static_cast<uint8_t>('0' + degree % 10)
+    });
     _mode = ROTATION;
 }
 void SerialLoop::set_length_and_width(uint16_t length, uint16_t width) {

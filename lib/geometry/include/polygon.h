@@ -22,6 +22,7 @@ class Polygon {
 class Polygons {
  public:
     Polygons(const std::vector<Point> &vertices, size_t size, const std::vector<Point> &tr_matrix);
+    Polygons(std::vector<Point> &&vertices, size_t size, std::vector<Point> &&tr_matrix);
     Polygons(Polygons &&other) noexcept;
     Polygons &operator=(Polygons &&other) noexcept;
     Polygon &operator[](size_t i);

@@ -1,0 +1,2 @@
+add_library(fixed_queue INTERFACE)
+target_include_directories(fixed_queue INTERFACE include)

@@ -18,6 +18,7 @@ void AudioTfLoop::job() {
         std::unique_lock _(_mutex);
         _container._rgb = _container._tmp_rgb;
         _container._fft = _container._tmp_fft;
+        _container._rgb_queue.push_back(_container._tmp_rgb);
     }
 }
 void AudioTfLoop::set_params(const clr::RGBParameters &prms) {

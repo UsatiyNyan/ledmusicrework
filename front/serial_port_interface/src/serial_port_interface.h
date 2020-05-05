@@ -22,8 +22,8 @@ class SerialPortInterface : public QWidget {
     void on_set_basic();
     void on_set_circle(geometry::Point center);
     void on_set_polygon(const std::vector<geometry::Point>& vertices);
-    void on_set_bpm(uint16_t bpm);
     void on_set_rotation(uint8_t degree);
+    void on_set_bpm(uint16_t bpm);
     void on_set_length_and_width(uint16_t length, uint16_t width);
  private:
     clr::RGB &_rgb;

@@ -10,6 +10,7 @@ add_subdirectory(file_descriptor) #
 add_subdirectory(serial) #
 add_subdirectory(geometry) #
 add_subdirectory(serial_loop) #
+add_subdirectory(fixed_queue) #
 
 set(LIBS
         base_exception
@@ -22,5 +23,6 @@ set(LIBS
         serial
         geometry
         serial_loop
+        fixed_queue
         PARENT_SCOPE)
 

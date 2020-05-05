@@ -10,4 +10,5 @@ target_link_libraries(audio_tf_loop PUBLIC
         base_exception
         pulse_adapter
         job_thread
+        fixed_queue
         )

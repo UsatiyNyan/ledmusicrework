@@ -10,7 +10,7 @@ Circle::Circle(const Point &center)
 
 }
 void Circle::expand() {
-    ++_radius;
+    _radius += 10;
 }
 Point Circle::get_center() const {
     return _center;
@@ -21,7 +21,15 @@ size_t Circle::get_radius() const {
 Circles::Circles(const Point &center, size_t size)
     : _circles(size, Circle(center)) {
     for (size_t i = 0; i < size; ++i) {
-        for (size_t j = 0; j < i; ++j) {
+        for (size_t j = i; j < size; ++j) {
+            _circles[i].expand();
+        }
+    }
+}
+Circles::Circles(Point &&center, size_t size)
+    : _circles(size, Circle(center)) {
+    for (size_t i = 0; i < size; ++i) {
+        for (size_t j = i; j < size; ++j) {
             _circles[i].expand();
         }
     }

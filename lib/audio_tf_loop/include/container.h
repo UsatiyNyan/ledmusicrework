@@ -6,6 +6,7 @@
 #define LED_PLAYER_LIB_AUDIO_TF_LOOP_INCLUDE_CONTAINER_H_
 
 #include "color_settings.h"
+#include "fixed_queue.h"
 #include <vector>
 
 
@@ -16,7 +17,9 @@ class LockFreeContainer {
     explicit LockFreeContainer(size_t bufsize);
     clr::RGB &get_rgb();
     std::vector<float> &get_fft();
+    container::FixedQueue<clr::RGB> &get_rgb_queue();
  private:
+    container::FixedQueue<clr::RGB> _rgb_queue{128};
     clr::RGB _rgb{};
     std::vector<float> _fft;
     clr::RGB _tmp_rgb{};

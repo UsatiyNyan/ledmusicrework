@@ -18,7 +18,7 @@ int main() {
     clr::RGBParameters parameters;
     loop::AudioTfLoop audio_tf_loop(container,
                                     pa::DeviceList().get_sources()[0],
-                                    parameters, 1024);
+                                    1024);
     audio_tf_loop.run();
 
     clr::RGB &rgb = container.get_rgb();
@@ -29,7 +29,7 @@ int main() {
 
     std::atomic<bool> run = true;
     std::thread timer([&run]() {
-      std::this_thread::sleep_for(24h);
+      std::this_thread::sleep_for(10s);
       run = false;
     });
 

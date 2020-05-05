@@ -119,7 +119,7 @@ void ColorSettings::paintEvent(QPaintEvent *) {
     auto bpeak = static_cast<float>(_prms.blue_peak);
     auto width = static_cast<float>(_prms.half_width * 2);
     auto smpls = static_cast<float>(_fft.size());
-    auto snstv = _prms.sensitivity * 40;
+    auto snstv = _prms.sensitivity;
     auto blue_slider_width = static_cast<float>(_ui->sliderBlue->width());
     float height = 200;
 

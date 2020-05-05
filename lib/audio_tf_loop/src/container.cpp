@@ -14,6 +14,9 @@ clr::RGB &LockFreeContainer::get_rgb() {
 std::vector<float> &LockFreeContainer::get_fft() {
     return _fft;
 }
+container::FixedQueue<clr::RGB> &LockFreeContainer::get_rgb_queue() {
+    return _rgb_queue;
+}
 }  // namespace loop
 
 
