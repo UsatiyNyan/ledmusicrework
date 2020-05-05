@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "rgb.h"
 #include <vector>
-//#include "presets.h"
+#include "presets.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -48,7 +48,7 @@ class ColorSettings : public QWidget {
 
  private:
     Ui::ColorSettings *_ui;
-//    ColorsPresets *_colors_presets;
+    ColorPresets *_color_presets;
     clr::RGB &_rgb;
     clr::RGBParameters _prms;
     std::vector<float> &_fft;

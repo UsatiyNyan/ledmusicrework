@@ -4,4 +4,4 @@ add_library(animation_settings STATIC
         src/polygon_preview.cpp
         src/polygon_preview.ui)
 target_include_directories(animation_settings PUBLIC src)
-target_link_libraries(animation_settings ${QT_LIBS} ${LIBS})
+target_link_libraries(animation_settings ${QT_LIBS} ${LIBS} presets)

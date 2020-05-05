@@ -1,31 +1,29 @@
 #include "polygon_preview.h"
 #include "ui_polygon_preview.h"
 #include <QPainter>
-#include <memory>
 
 
 PolygonPreview::PolygonPreview(QWidget *parent, container::FixedQueue<clr::RGB> *rgb_queue) :
     QWidget(parent),
     _ui(new Ui::PolygonPreview),
-//    _animation_presets(new AnimationPresets),
+    _animation_presets(new AnimationPresets(nullptr, &_mode, &_base_vertices, &_base_center, &_base_degree)),
     _rgb_queue(*rgb_queue) {
     _ui->setupUi(this);
-    // presets window
-//    QObject::connect(_animation_presets, SIGNAL(new_setting()), parent, SLOT(on_new_setting()));
-//    QObject::connect(_ui->buttonPresets, SIGNAL(clicked()), _animation_presets, SLOT(show()));
-//    QObject::connect(_ui->buttonPresets, SIGNAL(clicked()), _animation_presets, SLOT(raise()));
-//    QObject::connect(_animation_presets, SIGNAL(new_setting()), this, SLOT(update_settings()));
-//    _animation_presets->set_params(base_polygon);
+
+    QObject::connect(_ui->buttonPresets, SIGNAL(clicked()), _animation_presets, SLOT(show()));
+    QObject::connect(_ui->buttonPresets, SIGNAL(clicked()), _animation_presets, SLOT(raise()));
+    QObject::connect(_animation_presets, SIGNAL(new_setting()), this, SLOT(on_new_setting()));
+    QObject::connect(_animation_presets, SIGNAL(new_setting()), parent, SLOT(on_new_setting()));
     emit on_spinBox_valueChanged(1);
 }
 
 PolygonPreview::~PolygonPreview() {
     delete _ui;
-//    delete _animation_presets;
+    delete _animation_presets;
 }
 
 void PolygonPreview::on_buttonSubmit_clicked() {
-    switch (_mode) {
+    switch (static_cast<AnimationMode>(_mode)) {
         case AnimationMode::BASIC: {
             emit set_basic();
             break;
@@ -35,15 +33,15 @@ void PolygonPreview::on_buttonSubmit_clicked() {
             break;
         }
         case AnimationMode::POLYGON: {
-            emit set_polygon(_base_verices, _base_degree);
+            emit set_polygon(_base_vertices, _base_degree);
             break;
         }
     }
 }
 
 void PolygonPreview::on_new_mode(int mode) {
-    _mode = static_cast<AnimationMode>(mode);
-    switch (_mode) {
+    _mode = mode;
+    switch (static_cast<AnimationMode>(_mode)) {
         case AnimationMode::BASIC: {
             _ui->spinBox->setDisabled(true);
             _ui->editRotation->setDisabled(true);
@@ -80,11 +78,9 @@ void PolygonPreview::on_new_mode(int mode) {
 void PolygonPreview::on_spinBox_valueChanged(int arg1) {
     while (arg1 > _text_coords.size()) {
         push_point({0, 0});
-        _base_verices.push_back({0, 0});
     }
     while (arg1 < _text_coords.size()) {
         pop_point();
-        _base_verices.pop_back();
     }
 }
 
@@ -107,7 +103,7 @@ void PolygonPreview::on_value_changed() {
         });
     }
     _base_center = tmp_vertices[0];
-    _base_verices = std::move(tmp_vertices);
+    _base_vertices = std::move(tmp_vertices);
 }
 
 void PolygonPreview::paintEvent(QPaintEvent *) {
@@ -125,7 +121,7 @@ void PolygonPreview::paintEvent(QPaintEvent *) {
     painter->setBrush(color);
     painter->setPen(color);
 
-    switch (_mode) {
+    switch (static_cast<AnimationMode>(_mode)) {
         case AnimationMode::BASIC: {
             break;
         }
@@ -135,7 +131,7 @@ void PolygonPreview::paintEvent(QPaintEvent *) {
         }
         case AnimationMode::POLYGON: {
             std::vector<QPointF> q_points;
-            for (const auto &vertex: _base_verices) {
+            for (const auto &vertex: _base_vertices) {
                 q_points.emplace_back(vertex.x * 64, vertex.y * 64);
             }
             painter->drawPolygon(q_points.data(), q_points.size());
@@ -163,22 +159,18 @@ void PolygonPreview::on_editRotation_textChanged() {
     }
 }
 
-//void PolygonPreview::update_settings() {
-//    _ui->editRotation->setPlainText(QString::number(base_polygon->rotation));
-//    on_new_mode(base_polygon->mode);
-//    while (!vertices->empty()) {
-//        pop_point();
-//    }
-//    for (auto &real_vector: *base_polygon->real_vectors) {
-//        push_point(real_vector);
-//    }
-//    for (auto kI = 0; kI < vertices->size(); ++kI) {
-//        vertices->at(kI).first->setPlainText(QString::number(base_polygon->real_vectors->at(kI).x));
-//        vertices->at(kI).second->setPlainText(QString::number(base_polygon->real_vectors->at(kI).y));
-//    }
-//    on_buttonSubmit_clicked();
-//    _ui->spinBox->setValue(base_polygon->real_vectors->size());
-//}
+void PolygonPreview::on_new_setting() {
+    on_new_mode(_mode);
+    while (!_text_coords.empty()) {
+        pop_point();
+    }
+    for (const auto &vertex: _base_vertices) {
+        push_point(vertex);
+    }
+    _ui->editRotation->setPlainText(QString::number(_base_degree));
+    _ui->spinBox->setValue(_base_vertices.size());
+    on_buttonSubmit_clicked();
+}
 
 void PolygonPreview::push_point(geometry::Point point) {
     auto tx = std::make_unique<QTextEdit>();
@@ -192,8 +184,10 @@ void PolygonPreview::push_point(geometry::Point point) {
     _ui->mainLayout->addWidget(tx.get(), static_cast<int>(_text_coords.size()) + 4, 0);
     _ui->mainLayout->addWidget(ty.get(), static_cast<int>(_text_coords.size()) + 4, 1);
     _text_coords.emplace_back(std::move(tx), std::move(ty));
+    _base_vertices.push_back({0, 0});
 }
 
 void PolygonPreview::pop_point() {
     _text_coords.pop_back();
+    _base_vertices.pop_back();
 }

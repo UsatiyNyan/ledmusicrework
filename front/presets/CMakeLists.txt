@@ -1,6 +1,6 @@
 add_library(presets STATIC
-        src/savenewdial.cpp
-        src/savenewdial.ui
+        src/new_preset_dialog.cpp
+        src/new_preset_dialog.ui
         src/presets.cpp
         src/presets.ui
         )

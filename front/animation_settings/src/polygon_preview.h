@@ -10,7 +10,7 @@
 #include "circle.h"
 #include "fixed_queue.h"
 #include "rgb.h"
-//#include "presets.h"
+#include "presets.h"
 
 enum class AnimationMode : int {BASIC = 0, CIRCLE = 1, POLYGON = 2};
 
@@ -40,7 +40,7 @@ class PolygonPreview : public QWidget {
     void on_spinBox_valueChanged(int arg1);
     void on_value_changed();
     void on_editRotation_textChanged();
-//    void update_settings();
+    void on_new_setting();
 
  private:
     void push_point(geometry::Point point);
@@ -51,13 +51,13 @@ class PolygonPreview : public QWidget {
 
  private:
     Ui::PolygonPreview *_ui;
-    AnimationMode _mode = AnimationMode::BASIC;
-    std::vector<geometry::Point> _base_verices{{{0, 0}}};
-    geometry::Point _base_center{0, 0};
-    int16_t _base_degree = 0;
+    AnimationPresets *_animation_presets;
     std::vector<std::pair<std::unique_ptr<QTextEdit>, std::unique_ptr<QTextEdit>>>_text_coords;
     container::FixedQueue<clr::RGB> &_rgb_queue;
-//    AnimationPresets *_animation_presets;
+    int _mode = static_cast<int>(AnimationMode::BASIC);
+    std::vector<geometry::Point> _base_vertices{{{0, 0}}};
+    geometry::Point _base_center{0, 0};
+    int16_t _base_degree = 0;
 };
 
 

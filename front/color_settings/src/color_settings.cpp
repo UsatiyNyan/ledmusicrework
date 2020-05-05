@@ -1,13 +1,12 @@
 #include "color_settings.h"
 #include "ui_color_settings.h"
 #include <QPainter>
-//#include "presets.h"
 
 
 ColorSettings::ColorSettings(QWidget *parent, std::vector<float> *fft, clr::RGB *rgb) :
     QWidget(parent),
     _ui(new Ui::ColorSettings),
-//    _colors_presets(new ColorsPresets),
+    _color_presets(new ColorPresets(nullptr, &_prms)),
     _fft(*fft),
     _rgb(*rgb) {
     _ui->setupUi(this);
@@ -25,16 +24,14 @@ ColorSettings::ColorSettings(QWidget *parent, std::vector<float> *fft, clr::RGB 
     _prms = clr::RGBParameters{};
     setup_nobs();
 
-    // presets window TODO
-//    QObject::connect(_ui->buttonPresets, SIGNAL(clicked()), presets, SLOT(show()));
-//    QObject::connect(_ui->buttonPresets, SIGNAL(clicked()), presets, SLOT(raise()));
-//    presets->set_params(_prms);
-//    QObject::connect(presets, SIGNAL(new_setting()), this, SLOT(on_new_preset()));
+    QObject::connect(_ui->buttonPresets, SIGNAL(clicked()), _color_presets, SLOT(show()));
+    QObject::connect(_ui->buttonPresets, SIGNAL(clicked()), _color_presets, SLOT(raise()));
+    QObject::connect(_color_presets, SIGNAL(new_setting()), this, SLOT(on_new_preset()));
 }
 
 ColorSettings::~ColorSettings() {
     delete _ui;
-//    delete presets;
+    delete _color_presets;
 }
 
 void ColorSettings::on_sliderWidth_valueChanged(int value) {
@@ -184,6 +181,7 @@ void ColorSettings::paintEvent(QPaintEvent *) {
 void ColorSettings::on_new_preset() {
     setup_nobs();
 }
+
 void ColorSettings::setup_nobs() {
     _ui->sliderBlue->setSliderPosition(_prms.blue_peak);
     _ui->sliderGreen->setSliderPosition(_prms.green_peak);
