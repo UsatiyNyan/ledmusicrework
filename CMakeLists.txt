@@ -6,3 +6,5 @@ add_subdirectory(lib)
 add_subdirectory(front)
 add_subdirectory(example)
 add_subdirectory(project)
+
+FILE(COPY thirdparty/qtthemes/colinduquesnoy/qdarkstyle DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/project)

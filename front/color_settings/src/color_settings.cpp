@@ -120,11 +120,13 @@ void ColorSettings::paintEvent(QPaintEvent *) {
     auto blue_slider_width = static_cast<float>(_ui->sliderBlue->width());
     float height = 200;
 
-    painter->setPen(QColor(
+    QPen pen(QColor(
         static_cast<int>(_rgb.r),
         static_cast<int>(_rgb.g),
         static_cast<int>(_rgb.b)
-        ));
+    ));
+    pen.setWidth(3);
+    painter->setPen(pen);
     std::vector<QPoint> pts{_fft.size()};
     for (size_t i = 0; i < _fft.size(); ++i) {
         pts[i] = QPoint(

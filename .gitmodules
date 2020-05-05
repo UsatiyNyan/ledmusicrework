@@ -1,0 +1,3 @@
+[submodule "thirdparty/qtthemes/colinduquesnoy"]
+	path = thirdparty/qtthemes/colinduquesnoy
+	url = git@github.com:ColinDuquesnoy/QDarkStyleSheet.git

@@ -7,11 +7,18 @@
 #include "container.h"
 
 #include <QApplication>
+#include <QTextStream>
+#include <QFile>
 
 
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
+
+    QFile file("qdarkstyle/style.qss");
+    file.open(QFile::ReadOnly | QFile::Text);
+    QTextStream stream(&file);
+    app.setStyleSheet(stream.readAll());
 
     loop::LockFreeContainer container(1024);
 
