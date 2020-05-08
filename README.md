@@ -4,8 +4,10 @@ Idea and execution by UsatiyNyan
 ## code for rpi 4
 https://github.com/UsatiyNyan/ledmusicreworkembedded
 ## preview of desktop
+https://www.youtube.com/watch?v=wxvgvQ8Cv6c
 [![desktop preview](https://img.youtube.com/vi/wxvgvQ8Cv6c/0.jpg)](https://www.youtube.com/watch?v=wxvgvQ8Cv6c "desktop preview")
 ## preview of embedded rpi
+https://www.youtube.com/watch?v=zalfF9knbv4
 [![led preview](https://img.youtube.com/vi/zalfF9knbv4/0.jpg)](https://www.youtube.com/watch?v=zalfF9knbv4 "led preview")
 ## NOTE
 App is written with Qt version 5.13.2 (you might need to install Qt5::SerialPort additionally).
