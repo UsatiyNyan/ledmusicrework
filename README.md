@@ -21,8 +21,25 @@ Choose sound card which has `.monitor` in it's name)
 3) might crash if you choose wrong audio source
 4) with dark theme checkbox on the left side of `enable preview` becomes invisible
 ![on the left](https://github.com/UsatiyNyan/ledmusicrework/blob/master/missing_checkbox.png?raw=true) 
-## HOW TO BUILD
+## PREREQUISITES
+ZERO step - install qt5
+```shell script
+sudo apt-get install qt5-default
 ```
+first give access to whatever device you will be using as embedded
+```shell script
+sudo chmod 666 /dev/ttyUSB0
+```
+then install additional libs
+```shell script
+sudo apt-get install libpulse-dev libqt5serialport5-dev
+```
+then update submodules
+```shell script
+git submodule update --init
+```
+## HOW TO BUILD
+```shell script
 git submodule update --init
 mkdir build
 cd build
@@ -32,7 +49,7 @@ make
 or just build target led_player
 ## HOW TO RUN
 in your build directory
-```
+```shell script
 cd build
 cd project
 ./led_player
