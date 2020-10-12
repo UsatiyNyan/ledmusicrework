@@ -1,5 +1,5 @@
 .idea
-cmake-build-debug
+*build*
 bass24-linux.zip
 bass_lib/
 *.user
