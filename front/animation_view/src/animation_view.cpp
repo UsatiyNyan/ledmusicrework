@@ -5,7 +5,7 @@
 
 
 AnimationView::AnimationView(QWidget *parent, container::FixedQueue<clr::RGB> *rgb_queue) :
-    QWidget(parent),
+    QOpenGLWidget(parent),
     _ui(new Ui::AnimationView),
     _circles({0, 0}, rgb_queue->size()),
     _polygons(
@@ -15,6 +15,7 @@ AnimationView::AnimationView(QWidget *parent, container::FixedQueue<clr::RGB> *r
     _rgb_queue(*rgb_queue) {
     _ui->setupUi(this);
     setUpdatesEnabled(false);
+    setAutoFillBackground(false);
 }
 
 AnimationView::~AnimationView() {

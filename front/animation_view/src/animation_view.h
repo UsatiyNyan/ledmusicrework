@@ -1,7 +1,8 @@
 #ifndef LED_PLAYER_FRONT_ANIMATION_VIEW_SRC_ANIMATION_VIEW_H_
 #define LED_PLAYER_FRONT_ANIMATION_VIEW_SRC_ANIMATION_VIEW_H_
 
-#include <QWidget>
+#include <QOpenGLWidget>
+
 #include "rgb.h"
 #include "polygon.h"
 #include "circle.h"
@@ -12,7 +13,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class AnimationView; }
 QT_END_NAMESPACE
 
-class AnimationView : public QWidget {
+class AnimationView : public QOpenGLWidget {
 Q_OBJECT
 
 public:

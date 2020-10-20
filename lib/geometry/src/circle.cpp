@@ -9,7 +9,7 @@ Circle::Circle(const Point &center) : _center(center) {}
 Circle::Circle(const Circle &other) : _center(other._center) {}
 Circle::Circle(Circle &&other) noexcept : _center(other._center) {}
 void Circle::expand() {
-    _radius += 16;
+    _radius += 8;
 }
 Point Circle::get_center() const {
     return _center;

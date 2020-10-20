@@ -19,7 +19,7 @@ class LockFreeContainer {
     std::vector<float> &get_fft();
     container::FixedQueue<clr::RGB> &get_rgb_queue();
  private:
-    container::FixedQueue<clr::RGB> _rgb_queue{64};
+    container::FixedQueue<clr::RGB> _rgb_queue{128};
     clr::RGB _rgb{};
     std::vector<float> _fft;
     clr::RGB _tmp_rgb{};
