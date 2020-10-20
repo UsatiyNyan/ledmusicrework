@@ -5,17 +5,18 @@
 #ifndef LED_PLAYER_LIB_BASS_ADAPTER_INCLUDE_BASS_EXCEPTION_H_
 #define LED_PLAYER_LIB_BASS_ADAPTER_INCLUDE_BASS_EXCEPTION_H_
 
-#include <exception>
-#include <string>
+#include "ledplayer_exception.h"
 
+namespace ledplayer {
 namespace bass {
-class BassException : public std::exception {
+class Exception : public exception::Exception {
  public:
-    explicit BassException(std::string es);
+    explicit Exception(std::string es);
     [[nodiscard]] const char *what() const noexcept override;
  private:
     std::string _errstr;
 };
 }  // namespace bass
+}  // namespace ledplayer
 
 #endif //LED_PLAYER_LIB_BASS_ADAPTER_INCLUDE_BASS_EXCEPTION_H_

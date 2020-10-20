@@ -26,19 +26,24 @@ class FixedQueue {
         _data.pop_front();
         _data.push_back(item);
     }
+
     T const &operator[](size_t i) const {
         return _retriever[i];
     }
+
     [[nodiscard]] const T &back() const {
         return _data.back();
     }
+
     [[nodiscard]] size_t size() const {
         return _data.size();
     }
+
     void update() {
         std::unique_lock _(_mutex);
         _retriever.assign(_data.begin(), _data.end());
     }
+
  private:
     std::deque<T> _data;
     std::vector<T> _retriever;

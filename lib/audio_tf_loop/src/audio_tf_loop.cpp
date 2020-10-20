@@ -11,6 +11,7 @@ AudioTfLoop::AudioTfLoop(LockFreeContainer &container,
       _adapter(device.name, 44100, 2),
       _buf_size(buf_size) {
 }
+
 void AudioTfLoop::job() {
     _adapter.dispatch_audio_sample(_container._tmp_fft);
     _container._tmp_rgb = _color.compute_rgb(_container._tmp_fft);
@@ -21,6 +22,7 @@ void AudioTfLoop::job() {
         _container._rgb_queue.push_back(_container._tmp_rgb);
     }
 }
+
 void AudioTfLoop::set_params(const clr::RGBParameters &prms) {
     _color.set_params(prms);
 }

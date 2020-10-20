@@ -9,13 +9,15 @@ JobThread::~JobThread() {
     stop();
     _job_thread.join();
 }
+
 void JobThread::run() {
     _job_thread = std::thread([this]() {
-      while (_run) {
-          job();
-      }
+        while (_run) {
+            job();
+        }
     });
 }
+
 void JobThread::stop() {
     _run = false;
 }

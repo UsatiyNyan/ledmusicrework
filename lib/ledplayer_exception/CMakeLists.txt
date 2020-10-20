@@ -1,0 +1,2 @@
+add_library(ledplayer_exception STATIC src/ledplayer_exception.cpp)
+target_include_directories(ledplayer_exception PUBLIC include)

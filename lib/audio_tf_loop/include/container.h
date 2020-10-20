@@ -9,10 +9,10 @@
 #include "fixed_queue.h"
 #include <vector>
 
-
 namespace loop {
 class LockFreeContainer {
     friend class AudioTfLoop;
+
  public:
     explicit LockFreeContainer(size_t bufsize);
     clr::RGB &get_rgb();

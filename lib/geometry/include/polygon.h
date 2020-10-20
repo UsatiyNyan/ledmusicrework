@@ -21,6 +21,7 @@ class Polygon {
     std::vector<Point> _vertices;
     std::vector<Point> _expander;
 };
+
 class Polygons {
  public:
     Polygons(const std::vector<Point> &vertices, size_t size, const std::vector<Point> &tr_matrix);

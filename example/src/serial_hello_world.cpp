@@ -9,7 +9,7 @@
 
 using namespace std::chrono_literals;
 
-constexpr const char * serial_port  = "/dev/ttyUSB0";
+constexpr const char *serial_port = "/dev/ttyUSB0";
 
 int main() {
     serial::Connection connection(serial_port, 19200);

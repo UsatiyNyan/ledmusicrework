@@ -1,29 +1,55 @@
 #ifndef LED_PLAYER_LIB_BASS_ADAPTER_INCLUDE_BASS_ADAPTER_H_
 #define LED_PLAYER_LIB_BASS_ADAPTER_INCLUDE_BASS_ADAPTER_H_
 
-#include "capture.h"
-
 #include "bass.h"
+
+#include "bass_device.h"
+#include "bass_stream.h"
 
 #include <string>
 #include <vector>
 
+namespace ledplayer {
 namespace bass {
-class Adapter {
+enum Chans : int { MONO = 1, STEREO = 2, QUADRAPHONIC = 4, FIVE_ONE = 6, SEVEN_ONE = 8 };
+enum Freqs : uint32_t { DEFAULT = 44100 };
+
+class OutputAdapter {
  public:
-    Adapter(const std::string &device, uint32_t freq, uint8_t chans);
-    ~Adapter();
+    OutputAdapter(const OutputAdapter &) = delete;
+    OutputAdapter &operator=(const OutputAdapter &) = delete;
 
-    void dispatch_audio_sample(std::vector<float> &buf);
+    explicit OutputAdapter(int device = -1, uint32_t freq = Freqs::DEFAULT);
+    ~OutputAdapter();
 
-    Adapter() = delete;
-    Adapter(const Adapter &) = delete;
-    Adapter &operator=(const Adapter &) = delete;
+    static std::vector<DeviceInfo> devices_info();
+    static DeviceInfo device_info(int device_id);
+    [[nodiscard]] DeviceInfo current_device() const;
+
+    Stream create_stream(uint32_t chans);
+
  private:
-    HSTREAM _hstream;
-    pa::Capture _capture_device;
-    std::vector<float> _capture_buf;
+    uint32_t _freq;
+};
+
+class InputAdapter {
+ public:
+    InputAdapter(const InputAdapter &) = delete;
+    InputAdapter &operator=(const InputAdapter &) = delete;
+
+    explicit InputAdapter(int device = -1, uint32_t freq = Freqs::DEFAULT);
+    ~InputAdapter();
+
+    static std::vector<DeviceInfo> devices_info();
+    static DeviceInfo device_info(int device_id);
+    [[nodiscard]] DeviceInfo current_device() const;
+
+    Stream create_stream(uint32_t chans);
+
+ private:
+    uint32_t _freq;
 };
 }  // namespace bass
+}  // namespace ledplayer
 
 #endif

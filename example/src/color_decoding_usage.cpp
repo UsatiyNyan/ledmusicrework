@@ -7,8 +7,8 @@
 #include <iostream>
 
 int main() {
-    bass::Adapter adapter(pa::DeviceList().get_sources().at(0).name, 44100, 2);
-    clr::RGBParameters parameters {
+    bass::OutputAdapter adapter(pa::DeviceList().get_sources().at(0).name, 44100, 2);
+    clr::RGBParameters parameters{
         128,
         0,
         512,

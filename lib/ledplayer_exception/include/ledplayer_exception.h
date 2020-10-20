@@ -8,6 +8,7 @@
 #include <exception>
 #include <string>
 
+namespace ledplayer {
 namespace exception {
 class Exception : public std::exception {
  public:
@@ -18,6 +19,7 @@ class Exception : public std::exception {
  private:
     std::string _errstr;
 };
-}  // namespace process
+}  // namespace exception
+}  // namespace ledplayer
 
 #endif //LED_PLAYER_LIB_BASE_EXCEPTION_INCLUDE_BASE_EXCEPTION_H_

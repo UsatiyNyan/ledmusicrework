@@ -5,7 +5,6 @@
 #ifndef LED_PLAYER_LIB_COLORS_INCLUDE_RGB_H_
 #define LED_PLAYER_LIB_COLORS_INCLUDE_RGB_H_
 
-
 namespace clr {
 struct RGB {
     unsigned r;

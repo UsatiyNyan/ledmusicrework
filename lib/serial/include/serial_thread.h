@@ -12,7 +12,7 @@
 #include "player.h"
 
 class SerialThread : public QThread {
-    Q_OBJECT
+ Q_OBJECT
  public:
     explicit SerialThread(Player *player);
     ~SerialThread() override;
@@ -20,7 +20,7 @@ class SerialThread : public QThread {
 
  public
     slots:
-        void
+    void
     start_port(const QSerialPortInfo &);
 
  public:

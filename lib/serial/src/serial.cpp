@@ -1,5 +1,5 @@
 #include "serial.h"
-#include "base_exception.h"
+#include "ledplayer_exception.h"
 
 #include <unistd.h>   // UNIX standard function definitions
 #include <fcntl.h>    // File control definitions
@@ -109,16 +109,19 @@ void Connection::read_exact(void *data, size_t size) {
         read_n += read(static_cast<char *>(data) + read_n, size - read_n);
     }
 }
+
 void Connection::flush() {
     if (tcflush(_fd.fd(), TCIOFLUSH) == -1) {
         throw Exception("tcflush IO");
     }
 }
+
 void Connection::flush_input() {
     if (tcflush(_fd.fd(), TCIFLUSH) == -1) {
         throw Exception("tcflush I");
     }
 }
+
 void Connection::flush_output() {
     if (tcflush(_fd.fd(), TCOFLUSH) == -1) {
         throw Exception("tcflush O");

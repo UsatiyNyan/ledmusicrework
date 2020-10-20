@@ -22,7 +22,7 @@ class AudioTfLoop : public executor::JobThread {
     void job() override;
 
     LockFreeContainer &_container;
-    bass::Adapter _adapter;
+    bass::OutputAdapter _adapter;
     clr::Color _color;
     size_t _buf_size;
     std::mutex _mutex;

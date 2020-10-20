@@ -6,6 +6,7 @@
 #include <string>
 #include <utility>
 
+namespace ledplayer {
 namespace bass {
 std::string error_to_str() {
     switch (BASS_ErrorGetCode()) {
@@ -50,11 +51,12 @@ std::string error_to_str() {
     }
 }
 
-const char *BassException::what() const noexcept {
+const char *Exception::what() const noexcept {
     return _errstr.c_str();
 }
 
-BassException::BassException(std::string es) {
+Exception::Exception(std::string es) {
     _errstr = std::move(es) + "\n" + error_to_str();
 }
 }  // namespace bass
+}  // namespace ledplayer

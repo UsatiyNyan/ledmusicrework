@@ -1,7 +1,6 @@
 find_package(Threads)
 
-add_subdirectory(base_exception)
-add_subdirectory(pulse_adapter)
+add_subdirectory(ledplayer_exception)
 add_subdirectory(bass_adapter)
 add_subdirectory(colors)
 add_subdirectory(job_thread)
@@ -13,8 +12,7 @@ add_subdirectory(serial_loop)
 add_subdirectory(fixed_queue)
 
 set(LIBS
-        base_exception
-        pulse_adapter
+        ledplayer_exception
         bass_adapter
         colors
         job_thread

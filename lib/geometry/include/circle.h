@@ -21,6 +21,7 @@ class Circle {
     Point _center;
     size_t _radius = 0;
 };
+
 class Circles {
  public:
     Circles(const Point &center, size_t size);

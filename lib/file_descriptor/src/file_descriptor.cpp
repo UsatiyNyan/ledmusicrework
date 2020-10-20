@@ -3,7 +3,7 @@
 //
 
 #include "file_descriptor.h"
-#include "base_exception.h"
+#include "ledplayer_exception.h"
 #include <unistd.h>
 
 using exception::Exception;

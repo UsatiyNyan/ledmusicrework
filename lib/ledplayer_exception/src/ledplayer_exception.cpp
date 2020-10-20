@@ -3,8 +3,9 @@
 //
 
 #include <cstring>
-#include "base_exception.h"
+#include "ledplayer_exception.h"
 
+namespace ledplayer {
 namespace exception {
 Exception::Exception(std::string es) : _errstr(std::move(es)) {
     _errstr += "\n";
@@ -15,3 +16,4 @@ const char *Exception::what() const noexcept {
     return _errstr.c_str();
 }
 }  // namespace exception
+}  // namespace ledplayer

@@ -1070,14 +1070,25 @@ HCHANNEL BASSDEF(BASS_SampleGetChannel)(HSAMPLE handle, BOOL onlynew);
 DWORD BASSDEF(BASS_SampleGetChannels)(HSAMPLE handle, HCHANNEL *channels);
 BOOL BASSDEF(BASS_SampleStop)(HSAMPLE handle);
 
-HSTREAM BASSDEF(BASS_StreamCreate)(DWORD freq, DWORD chans, DWORD flags, STREAMPROC *proc, void *user);
-HSTREAM BASSDEF(BASS_StreamCreateFile)(BOOL mem, const void *file, QWORD offset, QWORD length, DWORD flags);
+HSTREAM BASSDEF(BASS_StreamCreate)(DWORD freq,
+                                   DWORD chans,
+                                   DWORD flags,
+                                   STREAMPROC *proc,
+                                   void *user);
+HSTREAM BASSDEF(BASS_StreamCreateFile)(BOOL mem,
+                                       const void *file,
+                                       QWORD offset,
+                                       QWORD length,
+                                       DWORD flags);
 HSTREAM BASSDEF(BASS_StreamCreateURL)(const char *url,
                                       DWORD offset,
                                       DWORD flags,
                                       DOWNLOADPROC *proc,
                                       void *user);
-HSTREAM BASSDEF(BASS_StreamCreateFileUser)(DWORD system, DWORD flags, const BASS_FILEPROCS *proc, void *user);
+HSTREAM BASSDEF(BASS_StreamCreateFileUser)(DWORD system,
+                                           DWORD flags,
+                                           const BASS_FILEPROCS *proc,
+                                           void *user);
 BOOL BASSDEF(BASS_StreamFree)(HSTREAM handle);
 QWORD BASSDEF(BASS_StreamGetFilePosition)(HSTREAM handle, DWORD mode);
 DWORD BASSDEF(BASS_StreamPutData)(HSTREAM handle, const void *buffer, DWORD length);
@@ -1092,7 +1103,11 @@ BOOL BASSDEF(BASS_RecordGetInfo)(BASS_RECORDINFO *info);
 const char *BASSDEF(BASS_RecordGetInputName)(int input);
 BOOL BASSDEF(BASS_RecordSetInput)(int input, DWORD flags, float volume);
 DWORD BASSDEF(BASS_RecordGetInput)(int input, float *volume);
-HRECORD BASSDEF(BASS_RecordStart)(DWORD freq, DWORD chans, DWORD flags, RECORDPROC *proc, void *user);
+HRECORD BASSDEF(BASS_RecordStart)(DWORD freq,
+                                  DWORD chans,
+                                  DWORD flags,
+                                  RECORDPROC *proc,
+                                  void *user);
 
 double BASSDEF(BASS_ChannelBytes2Seconds)(DWORD handle, QWORD pos);
 QWORD BASSDEF(BASS_ChannelSeconds2Bytes)(DWORD handle, double pos);
@@ -1141,7 +1156,11 @@ QWORD BASSDEF(BASS_ChannelGetPosition)(DWORD handle, DWORD mode);
 DWORD BASSDEF(BASS_ChannelGetLevel)(DWORD handle);
 BOOL BASSDEF(BASS_ChannelGetLevelEx)(DWORD handle, float *levels, float length, DWORD flags);
 DWORD BASSDEF(BASS_ChannelGetData)(DWORD handle, void *buffer, DWORD length);
-HSYNC BASSDEF(BASS_ChannelSetSync)(DWORD handle, DWORD type, QWORD param, SYNCPROC *proc, void *user);
+HSYNC BASSDEF(BASS_ChannelSetSync)(DWORD handle,
+                                   DWORD type,
+                                   QWORD param,
+                                   SYNCPROC *proc,
+                                   void *user);
 BOOL BASSDEF(BASS_ChannelRemoveSync)(DWORD handle, HSYNC sync);
 HDSP BASSDEF(BASS_ChannelSetDSP)(DWORD handle, DSPPROC *proc, void *user, int priority);
 BOOL BASSDEF(BASS_ChannelRemoveDSP)(DWORD handle, HDSP dsp);

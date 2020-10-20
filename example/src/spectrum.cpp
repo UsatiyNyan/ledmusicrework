@@ -73,8 +73,14 @@ BOOL PlayFile() {
                                           NULL);
     filter = gtk_file_filter_new();
     gtk_file_filter_set_name(filter, "Playable files");
-    regcomp(&fregex, "\\.(mo3|xm|mod|s3m|it|umx|mp[1-3]|ogg|wav|aif)$", REG_ICASE | REG_NOSUB | REG_EXTENDED);
-    gtk_file_filter_add_custom(filter, GTK_FILE_FILTER_FILENAME, FileExtensionFilter, &fregex, NULL);
+    regcomp(&fregex,
+            "\\.(mo3|xm|mod|s3m|it|umx|mp[1-3]|ogg|wav|aif)$",
+            REG_ICASE | REG_NOSUB | REG_EXTENDED);
+    gtk_file_filter_add_custom(filter,
+                               GTK_FILE_FILTER_FILENAME,
+                               FileExtensionFilter,
+                               &fregex,
+                               NULL);
     gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(filesel), filter);
     filter = gtk_file_filter_new();
     gtk_file_filter_set_name(filter, "All files");
@@ -114,7 +120,8 @@ gboolean UpdateSpectrum(gpointer data) {
                                 | BASS_DATA_FLOAT); // get the sample data (floating-point to avoid 8 & 16 bit processing)
         for (c = 0; c < ci.chans; c++) {
             for (x = 0; x < SPECWIDTH; x++) {
-                int v = (1 - buf[x * ci.chans + c]) * SPECHEIGHT / 2; // invert and scale to fit display
+                int v =
+                    (1 - buf[x * ci.chans + c]) * SPECHEIGHT / 2; // invert and scale to fit display
                 if (v < 0) v = 0;
                 else if (v >= SPECHEIGHT) v = SPECHEIGHT - 1;
                 if (!x) y = v;
@@ -134,17 +141,20 @@ gboolean UpdateSpectrum(gpointer data) {
             memset(specbuf, 0, SPECWIDTH * SPECHEIGHT * sizeof(*specbuf));
             for (x = 0; x < SPECWIDTH / 2; x++) {
 #if 1
-                y = sqrt(fft[x + 1]) * 3 * SPECHEIGHT - 4; // scale it (sqrt to make low values more visible)
+                y = sqrt(fft[x + 1]) * 3 * SPECHEIGHT
+                    - 4; // scale it (sqrt to make low values more visible)
 #else
                 y = fft[x + 1] * 10 * SPECHEIGHT; // scale it (linearly)
 #endif
                 if (y > SPECHEIGHT) y = SPECHEIGHT; // cap it
-                if (x && (y1 = (y + y1) / 2)) // interpolate from previous to make the display smoother
+                if (x && (y1 = (y + y1)
+                    / 2)) // interpolate from previous to make the display smoother
                     while (--y1 >= 0)
                         specbuf[(SPECHEIGHT - 1 - y1) * SPECWIDTH + x * 2 - 1] = palette[y1 + 1];
                 y1 = y;
                 while (--y >= 0)
-                    specbuf[(SPECHEIGHT - 1 - y) * SPECWIDTH + x * 2] = palette[y + 1]; // draw level
+                    specbuf[(SPECHEIGHT - 1 - y) * SPECWIDTH + x * 2] =
+                        palette[y + 1]; // draw level
             }
         } else if (specmode == 1) { // logarithmic, acumulate & average bins
             int b0 = 0;
@@ -157,7 +167,8 @@ gboolean UpdateSpectrum(gpointer data) {
                 if (b1 <= b0) b1 = b0 + 1; // make sure it uses at least 1 FFT bin
                 for (; b0 < b1; b0++)
                     if (peak < fft[1 + b0]) peak = fft[1 + b0];
-                y = sqrt(peak) * 3 * SPECHEIGHT - 4; // scale it (sqrt to make low values more visible)
+                y = sqrt(peak) * 3 * SPECHEIGHT
+                    - 4; // scale it (sqrt to make low values more visible)
                 if (y > SPECHEIGHT) y = SPECHEIGHT; // cap it
                 while (--y >= 0)
                     for (y1 = 0; y1 < SPECWIDTH / BANDS - 2; y1++)

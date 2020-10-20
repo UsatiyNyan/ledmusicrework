@@ -9,7 +9,7 @@
 #include <atomic>
 #include <iostream>
 
-constexpr const char * serial_port  = "/dev/ttyUSB0";
+constexpr const char *serial_port = "/dev/ttyUSB0";
 
 using namespace std::chrono_literals;
 
@@ -29,14 +29,14 @@ int main() {
 
     std::atomic<bool> run = true;
     std::thread timer([&run]() {
-      std::this_thread::sleep_for(10s);
-      run = false;
+        std::this_thread::sleep_for(10s);
+        run = false;
     });
 
 //    std::vector<geometry::Point> polygon({{1, 1}, {-1, 1}, {-1, -1}, {1, -1}});
 //    serial_loop.set_polygon(polygon);
 //    serial_loop.set_bpm(160);
-    serial_loop.set_circle({0,0});
+    serial_loop.set_circle({0, 0});
 //    serial_loop.set_basic();
 //    serial_loop.set_length_and_width(8, 8);
 

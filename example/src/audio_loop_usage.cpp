@@ -11,7 +11,7 @@ using namespace std::chrono_literals;
 
 int main() {
     loop::LockFreeContainer container(1024);
-    clr::RGBParameters parameters {
+    clr::RGBParameters parameters{
         128,
         0,
         512,
@@ -24,13 +24,16 @@ int main() {
         false
     };
     loop::AudioTfLoop audio_tf_loop(container,
-        pa::DeviceList().get_sources()[0],
-        parameters, 1024);
+                                    pa::DeviceList().get_sources()[0],
+                                    parameters, 1024);
     audio_tf_loop.run();
     clr::RGB &rgb = container.get_rgb();
     std::vector<float> &fft = container.get_fft();
     std::atomic<bool> run = true;
-    std::thread timer([&run](){std::this_thread::sleep_for(24s); run = false;});
+    std::thread timer([&run]() {
+        std::this_thread::sleep_for(24s);
+        run = false;
+    });
     size_t ctr = 0;
     while (run) {
         ++ctr;
