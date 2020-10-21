@@ -1,0 +1,3 @@
+add_library(color_processor STATIC src/color_processor.cpp)
+target_include_directories(color_processor PUBLIC include)
+target_link_libraries(color_processor PUBLIC bass_adapter)

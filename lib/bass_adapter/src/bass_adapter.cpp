@@ -4,7 +4,7 @@
 
 namespace ledplayer {
 namespace bass {
-OutputAdapter::OutputAdapter(int device, uint32_t freq)
+OutputAdapter::OutputAdapter(int device, unsigned freq)
     : _freq(freq) {
     if (!BASS_Init(device, _freq, 0, nullptr, nullptr)) {
         throw Exception("BASS_Init");
@@ -38,18 +38,18 @@ DeviceInfo OutputAdapter::current_device() const {
     return device_info(BASS_GetDevice());
 }
 
-Stream OutputAdapter::create_stream(uint32_t chans) {
-    uint32_t handle = BASS_StreamCreate(_freq, chans,
-                                    BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT,
-                                    STREAMPROC_DUMMY,
-                                    nullptr);
+Stream OutputAdapter::create_stream(unsigned chans) {
+    unsigned handle = BASS_StreamCreate(_freq, chans,
+                                        BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT,
+                                        STREAMPROC_DUMMY,
+                                        nullptr);
     if (!handle) {
         throw bass::Exception{"BASS_StreamCreate"};
     }
     return Stream{handle};
 }
 
-InputAdapter::InputAdapter(int device, uint32_t freq)
+InputAdapter::InputAdapter(int device, unsigned freq)
     : _freq(freq) {
     if (!BASS_RecordInit(device)) {
         throw Exception("BASS_RecordInit");
@@ -65,7 +65,7 @@ InputAdapter::~InputAdapter() {
 std::vector<DeviceInfo> InputAdapter::devices_info() {
     std::vector<DeviceInfo> devices_info{};
     BASS_DEVICEINFO device_info{};
-    for (int d = 1; BASS_RecordGetDeviceInfo(d, &device_info); ++d) {
+    for (int d = 0; BASS_RecordGetDeviceInfo(d, &device_info); ++d) {
         devices_info.emplace_back(d, device_info);
     }
     return devices_info;
@@ -83,11 +83,11 @@ DeviceInfo InputAdapter::current_device() const {
     return device_info(BASS_RecordGetDevice());
 }
 
-Stream InputAdapter::create_stream(uint32_t chans) {
-    uint32_t handle = BASS_RecordStart(_freq, chans,
-                                   BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT,
-                                   nullptr,
-                                   nullptr);
+Stream InputAdapter::create_stream(unsigned chans) {
+    unsigned handle = BASS_RecordStart(_freq, chans,
+                                       BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT,
+                                       nullptr,
+                                       nullptr);
     if (!handle) {
         throw bass::Exception{"BASS_RecordStart"};
     }

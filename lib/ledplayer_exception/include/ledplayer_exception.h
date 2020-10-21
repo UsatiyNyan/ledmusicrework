@@ -12,6 +12,7 @@ namespace ledplayer {
 namespace exception {
 class Exception : public std::exception {
  public:
+    Exception() = default;
     explicit Exception(std::string es);
 
     [[nodiscard]] const char *what() const noexcept override;

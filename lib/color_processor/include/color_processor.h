@@ -8,15 +8,17 @@
 #include "rgb.h"
 #include <vector>
 
+namespace ledplayer {
 namespace clr {
-class Color {
+class ColorProcessor {
  public:
-    Color() = default;
+    ColorProcessor() = default;
     void set_params(const RGBParameters &parameters);
     [[nodiscard]] RGB compute_rgb(const std::vector<float> &fft_data);
  private:
     RGBParameters _prm;
 };
 }  // namespace colors
+}  // namespace ledplayer
 
 #endif //LED_PLAYER_LIB_COLORS_INCLUDE_COLOR_SETTINGS_H_

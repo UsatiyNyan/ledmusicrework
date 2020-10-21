@@ -13,16 +13,16 @@ namespace ledplayer {
 namespace bass {
 class Stream {
  public:
-    explicit Stream(uint32_t handle);
-    [[nodiscard]] const std::vector<float> &fft_data() const;
+    explicit Stream(unsigned handle);
+    [[nodiscard]] std::vector<float> fft_data() const;
 
     void update_fft_data(size_t sample_size = 1024);
 
  private:
-    std::mutex _capture_mutex;
-    uint32_t _handle;
+    mutable std::mutex _capture_mutex;
+    unsigned _handle;
     std::vector<float> _capture_buf;
-    uint32_t _fft_data_flag;
+    unsigned _fft_data_flag;
 };
 }  // namespace bass
 }  // namespace ledplayer

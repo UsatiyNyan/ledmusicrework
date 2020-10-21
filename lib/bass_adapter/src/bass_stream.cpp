@@ -27,8 +27,9 @@ namespace ledplayer {
 namespace bass {
 Stream::Stream(uint32_t handle) : _handle(handle), _fft_data_flag(0) {}
 
-const std::vector<float> &Stream::fft_data() const {
-    return _capture_buf;
+std::vector<float> Stream::fft_data() const {  // TODO: COPY HERE
+    std::lock_guard lock{_capture_mutex};
+    return {_capture_buf.begin(), _capture_buf.end()};
 }
 
 void Stream::update_fft_data(size_t sample_size) {

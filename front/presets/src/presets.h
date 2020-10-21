@@ -2,7 +2,7 @@
 #define LED_PLAYER_FRONT_PRESETS_SRC_PRESETS_H_
 
 #include <QWidget>
-#include "color_settings.h"
+#include "color_processor.h"
 #include "new_preset_dialog.h"
 #include "polygon.h"
 

@@ -7,4 +7,5 @@ add_library(bass_adapter STATIC
 target_include_directories(bass_adapter PUBLIC include)
 target_link_libraries(bass_adapter PUBLIC
         ledplayer_exception
+        pulse_audio
         ${CMAKE_CURRENT_SOURCE_DIR}/include/libbass.so)

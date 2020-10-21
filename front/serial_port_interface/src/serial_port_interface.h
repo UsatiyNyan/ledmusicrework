@@ -5,7 +5,7 @@
 #include <QSerialPortInfo>
 
 #include "serial_loop.h"
-#include "color_settings.h"
+#include "color_processor.h"
 #include "container.h"
 
 

@@ -17,10 +17,10 @@ int main() {
     std::cout << "current device:\n" << adapter.current_device().dump() << '\n';
 
     auto stream = adapter.create_stream(bass::Chans::MONO);
-    auto &data = stream.fft_data();
 
     while (true) {
         stream.update_fft_data(/* TODO make it variable through frontend */);
+        auto data = stream.fft_data();
         std::cout << "mean: " << std::accumulate(data.begin(), data.end(), 0.f) / data.size()
                   << '\n';
     }

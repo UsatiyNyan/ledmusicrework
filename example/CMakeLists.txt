@@ -1,5 +1,8 @@
+add_executable(bass_adapter_usage src/bass_adapter_usage.cpp)
+target_link_libraries(bass_adapter_usage bass_adapter)
+
 add_executable(color_decoding_usage src/color_decoding_usage.cpp)
-target_link_libraries(color_decoding_usage colors bass_adapter)
+target_link_libraries(color_decoding_usage color_processor bass_adapter)
 
 add_executable(audio_loop_usage src/audio_loop_usage.cpp)
 target_link_libraries(audio_loop_usage audio_tf_loop)
@@ -18,6 +21,3 @@ target_link_libraries(serial_hello_world ${LIBS})
 
 add_executable(devices_front_usage src/devices_front_usage.cpp)
 target_link_libraries(devices_front_usage devices)
-
-add_executable(bass_adapter_usage src/bass_adapter_usage.cpp)
-target_link_libraries(bass_adapter_usage bass_adapter)

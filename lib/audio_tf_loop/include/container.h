@@ -5,7 +5,7 @@
 #ifndef LED_PLAYER_LIB_AUDIO_TF_LOOP_INCLUDE_CONTAINER_H_
 #define LED_PLAYER_LIB_AUDIO_TF_LOOP_INCLUDE_CONTAINER_H_
 
-#include "color_settings.h"
+#include "color_processor.h"
 #include "fixed_queue.h"
 #include <vector>
 

@@ -8,7 +8,7 @@
 #include <mutex>
 #include "bass_adapter.h"
 #include "list_devices.h"
-#include "color_settings.h"
+#include "color_processor.h"
 #include "container.h"
 #include "job_thread.h"
 
@@ -23,7 +23,7 @@ class AudioTfLoop : public executor::JobThread {
 
     LockFreeContainer &_container;
     bass::OutputAdapter _adapter;
-    clr::Color _color;
+    clr::ColorProcessor _color;
     size_t _buf_size;
     std::mutex _mutex;
 };

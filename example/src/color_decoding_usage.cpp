@@ -1,13 +1,13 @@
 //
 // Created by kira on 29.04.2020.
 //
-#include "color_settings.h"
-#include "list_devices.h"
+#include "color_processor.h"
 #include "bass_adapter.h"
 #include <iostream>
 
+using namespace ledplayer;
+
 int main() {
-    bass::OutputAdapter adapter(pa::DeviceList().get_sources().at(0).name, 44100, 2);
     clr::RGBParameters parameters{
         128,
         0,
@@ -16,15 +16,22 @@ int main() {
         1,
         1,
         1,
+        100,
         0,
         1,
         false
     };
-    clr::Color color(parameters);
-    std::vector<float> float_vector(1024);
+
+    bass::InputAdapter adapter{};  // PA - works as microphone
+
+    clr::ColorProcessor color_processor{};
+    color_processor.set_params(parameters);
+
+    auto stream = adapter.create_stream(bass::Chans::STEREO);
+
     while (true) {
-        adapter.dispatch_audio_sample(float_vector);
-        clr::RGB rgb = color.compute_rgb(float_vector);
+        stream.update_fft_data();
+        clr::RGB rgb = color_processor.compute_rgb(stream.fft_data());
         std::cout << rgb.r << " | "
                   << rgb.g << " | "
                   << rgb.b << std::endl;

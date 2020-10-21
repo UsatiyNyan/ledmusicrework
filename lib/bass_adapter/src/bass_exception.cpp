@@ -55,7 +55,7 @@ const char *Exception::what() const noexcept {
     return _errstr.c_str();
 }
 
-Exception::Exception(std::string es) {
+Exception::Exception(std::string es) : ledplayer::exception::Exception() {
     _errstr = std::move(es) + "\n" + error_to_str();
 }
 }  // namespace bass

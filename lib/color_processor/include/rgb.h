@@ -5,6 +5,7 @@
 #ifndef LED_PLAYER_LIB_COLORS_INCLUDE_RGB_H_
 #define LED_PLAYER_LIB_COLORS_INCLUDE_RGB_H_
 
+namespace ledplayer {
 namespace clr {
 struct RGB {
     unsigned r;
@@ -12,18 +13,27 @@ struct RGB {
     unsigned b;
 };
 struct RGBParameters {
+    struct Peaks {
+        int red = 0;
+        int green = 1024;
+        int blue = 512;
+    };
+
+    struct Impact {
+        float red = 1.f;
+        float green = 1.f;
+        float blue = 1.f;
+    };
+
     int half_width = 128;
-    int red_peak = 0;
-    int green_peak = 1024;
-    int blue_peak = 512;
+    Peaks peak{};
+    Impact impact{};
     int bpm = 100;
-    float red_imp = 1;
-    float green_imp = 1;
-    float blue_imp = 1;
     float filter = 0;
     float sensitivity = 1;
     bool tweak_by_min = true;
 };
-}  // namespace colors
+}  // namespace clr
+}  // namespace ledplayer
 
 #endif //LED_PLAYER_LIB_COLORS_INCLUDE_RGB_H_
